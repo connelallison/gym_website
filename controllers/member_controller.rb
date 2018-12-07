@@ -21,7 +21,11 @@ get "/members/:id/edit" do
   erb(:"members/edit")
 end
 
-
+post "/members/:id" do
+  @member = Member.new(params)
+  @member.update()
+  erb(:"members/update")
+end
 
 post '/members' do
   @member = Member.new(params)

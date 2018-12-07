@@ -1,0 +1,19 @@
+<h2>Member successfully updated.</h2>
+
+<h3>Member details:</h3>
+<p>Name: <%= @member.name() %></p>
+<p>Membership status:
+  <% if (@member.premium() == true) %>
+  Premium
+  <% elsif (@member.premium() == false) %>
+  Standard
+  <% end %>
+</p>
+<ul>
+  <% if (@member.lessons == []) %>
+    <p>none</p>
+  <% else @member.lessons.each() { |lesson| %>
+    <p><%=lesson.name()%></p>
+  <% } end %>
+</ul>
+<hr/>
