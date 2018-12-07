@@ -36,6 +36,6 @@ member_lesson3.save()
 member_lesson4 = MemberLesson.new({'member_id' => member3.id, 'lesson_id' => lesson1.id})
 member_lesson4.save()
 
-binding.pry
+# binding.pry
 
 nil
