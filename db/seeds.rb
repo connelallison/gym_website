@@ -28,9 +28,13 @@ lesson4 = Lesson.new({'name' => 'Cardio, Monday morning', 'capacity' => 12, 'pea
 lesson4.save()
 
 member_lesson1 = MemberLesson.new({'member_id' => member1.id, 'lesson_id' => lesson1.id})
+member_lesson1.save()
 member_lesson2 = MemberLesson.new({'member_id' => member1.id, 'lesson_id' => lesson3.id})
+member_lesson2.save()
 member_lesson3 = MemberLesson.new({'member_id' => member2.id, 'lesson_id' => lesson2.id})
+member_lesson3.save()
 member_lesson4 = MemberLesson.new({'member_id' => member3.id, 'lesson_id' => lesson1.id})
+member_lesson4.save()
 
 binding.pry
 
