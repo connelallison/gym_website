@@ -1,4 +1,5 @@
 require_relative('./member.rb')
+require_relative('./member_lesson.rb')
 require_relative('../db/sql_runner.rb')
 
 class Lesson
@@ -35,11 +36,15 @@ attr_accessor :name, :capacity, :peak
     return SqlRunner.run("SELECT * FROM lessons;").map() { |lesson| Lesson.new( lesson ) }
   end
 
-  def self.find(name)
-    result = (SqlRunner.run("SELECT * FROM lessons WHERE name = $1;", [name]).first())
+  def self.find(id)
+    result = (SqlRunner.run("SELECT * FROM lessons WHERE id = $1;", [id]).first())
     return Lesson.new(result) if (result != nil)
   end
 
   def members()
     return SqlRunner.run("SELECT * FROM members WHERE lesson = $1;", [@name]).map() { |member| Member.new(member) }
+  end
+
+  def members()
+    return SqlRunner.run("SELECT members.* FROM members_lessons INNER JOIN members ON members_lessons.member_id = members.id WHERE members_lessons.lesson_id = $1;", [@id]).uniq().map() { |member| Member.new(member) }
   end
