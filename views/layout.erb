@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/style.css">
+  <title>Average Joe's Gym</title>
+</head>
+<body>
+  <nav class="topnav">
+  <a class="home" href="/">Home</a>
+  <% unless (@show_members == "show_members") %>
+    <a href="/members">View all members</a>
+  <% end %>
+  <% if (@show_members == "show_members") %>
+    <a class="create-new" href="/members/new">Add new member </a>
+  <% end %>
+  </nav>
+  <%= yield %>
+</body>
+</html>
