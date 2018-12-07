@@ -1,7 +1,7 @@
 require_relative ("../models/member.rb")
 
 get '/members' do
-  @members = Member.all()
+  @members = Member.all_ascending_id()
   @show_members = "show_members"
   erb(:"members/index")
 end
