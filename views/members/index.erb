@@ -1,0 +1,27 @@
+<h2 class="member-title">Member Directory</h2>
+
+<% @members.each() { |member| %>
+  <p>Name: <%= member.name() %></p>
+  <p>Membership status:
+    <% if (member.premium() == true) %>
+    Premium
+    <% end %>
+    <% if (member.premium() == false) %>
+    Standard
+    <% end %>
+  </p>
+  <hr/>
+  <div class="buttons">
+    <form action="/members/<%=member.id()%>" method="get">
+      <input class="button" type="submit" value="View this member">
+    </form>
+    <form action="/members/<%=member.id()%>/edit" method="get">
+      <input class="button edit" type="submit" value="Edit this member">
+    </form>
+    <form action="/members/<%=member.id()%>/delete" method="post">
+      <input class="button delete" type="submit" value="Delete this member">
+    </form>
+  </div>
+
+  <hr/>
+<%}%>
