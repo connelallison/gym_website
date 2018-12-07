@@ -5,8 +5,7 @@
   <p>Membership status:
     <% if (member.premium() == true) %>
     Premium
-    <% end %>
-    <% if (member.premium() == false) %>
+    <% elsif (member.premium() == false) %>
     Standard
     <% end %>
   </p>

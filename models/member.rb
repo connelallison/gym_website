@@ -11,8 +11,8 @@ class Member
     @id = options['id'].to_i() if options['id']
     @name = options['name']
     @premium = options['premium']
-    @premium = true if (options['premium'] == "t")
-    @premium = false if (options['premium'] == "f")
+    @premium = true if (options['premium'] == "t" || options['premium'] == "true" )
+    @premium = false if (options['premium'] == "f" || options['premium'] == "false" )
   end
 
   def save()
