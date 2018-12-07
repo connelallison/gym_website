@@ -1,0 +1,11 @@
+<form action="/members" method="post">
+  <label for="name">Full Name:</label>
+  <input type="text" name="name">
+
+  <label for="membership">Membership:</label>
+  <select name="membership">
+    <option value=<%true%>><%="Premium"%></option>
+    <option value=<%false%>><%="Standard"%></option>
+  </select>
+  <input type="submit" value="Add member">
+</form>

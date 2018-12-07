@@ -5,3 +5,7 @@ get '/members' do
   @show_members = "show_members"
   erb(:"members/index")
 end
+
+get '/members/new' do
+  erb(:"members/new")
+end

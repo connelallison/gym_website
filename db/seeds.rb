@@ -8,13 +8,13 @@ MemberLesson.delete_all()
 Member.delete_all()
 Lesson.delete_all()
 
-member1 = Member.new({'name' => 'Alfred', 'premium' => true})
+member1 = Member.new({'name' => 'Alfred Addington', 'premium' => true})
 member1.save()
-member2 = Member.new({'name' => 'Bob', 'premium' => false})
+member2 = Member.new({'name' => 'Bob Buttons', 'premium' => false})
 member2.save()
-member3 = Member.new({'name' => 'Charles', 'premium' => true})
+member3 = Member.new({'name' => 'Charles Chase', 'premium' => true})
 member3.save()
-member4 = Member.new({'name' => 'Derek', 'premium' => false})
+member4 = Member.new({'name' => 'Derek Drew', 'premium' => false})
 member4.save()
 
 
