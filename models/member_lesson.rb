@@ -1,11 +1,11 @@
-require_relative("../db/sql_runner")
+require_relative("../db/sql_runner.rb")
 require_relative("./member.rb")
 require_relative("./lesson.rb")
 
 class MemberLesson
 
   attr_reader :id
-  attr_accessor :member_id, :lesson_id,
+  attr_accessor :member_id, :lesson_id
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
