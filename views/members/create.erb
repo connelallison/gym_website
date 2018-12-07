@@ -1,0 +1,12 @@
+<h2>Member successfully added to database.</h2>
+
+<h3>Member details:</h3>
+<p>Name: <%= @member.name() %></p>
+<p>Membership status:
+  <% if (@member.premium() == true) %>
+  Premium
+  <% elsif (@member.premium() == false) %>
+  Standard
+  <% end %>
+</p>
+<hr/>
