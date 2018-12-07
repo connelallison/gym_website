@@ -1,6 +1,6 @@
 require_relative("../db/sql_runner.rb")
-require_relative("lesson.rb")
-require_relative("member_lesson.rb")
+require_relative("./lesson.rb")
+require_relative("./member_lesson.rb")
 
 class Member
 
