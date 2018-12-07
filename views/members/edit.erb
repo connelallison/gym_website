@@ -1,0 +1,16 @@
+<form action="/members/<%=@member.id()%>" method="post">
+  <label for="name">Full Name:</label>
+  <input type="text" name="name" value=<%=@member.name%>>
+
+  <label for="premium">Membership status:</label>
+  <select name="premium">
+    <% if (@member.premium == true) %>
+    <option selected value=<%=true%>><%="Premium"%></option>
+    <option value=<%=false%>><%="Standard"%></option>
+    <% else %>
+    <option value=<%=true%>><%="Premium"%></option>
+    <option selected value=<%=false%>><%="Standard"%></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Add member">
+</form>

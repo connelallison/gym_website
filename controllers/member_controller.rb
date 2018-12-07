@@ -16,7 +16,10 @@ post "/members/:id/delete" do
   erb(:"members/delete")
 end
 
-
+get "/members/:id/edit" do
+  @member = Member.find(params[:id].to_i())
+  erb(:"members/edit")
+end
 
 
 
