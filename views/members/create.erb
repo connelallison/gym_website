@@ -9,4 +9,12 @@
   Standard
   <% end %>
 </p>
+<p>Lessons: </p>
+<ul>
+  <% if (@member.lessons == []) %>
+    <p>none</p>
+  <% else @member.lessons.each() { |lesson| %>
+    <p><%=lesson.name()%></p>
+  <% } end %>
+</ul>
 <hr/>
