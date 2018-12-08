@@ -1,7 +1,7 @@
 <h2 class="lesson-title">Lesson Directory</h2>
 
 <% @lessons.each() { |lesson| %>
-  <p>Name: <%= lesson.name() %></p>
+  <p>Course: <%= lesson.course() %></p>
   <p>Timeslot:
     <% if (lesson.peak() == true) %>
     Peak

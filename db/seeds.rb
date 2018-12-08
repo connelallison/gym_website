@@ -18,13 +18,13 @@ member4 = Member.new({'name' => 'Derek Drew', 'premium' => false})
 member4.save()
 
 
-lesson1 = Lesson.new({'name' => 'Yoga, Friday evening', 'capacity' => 12, 'peak' => true})
+lesson1 = Lesson.new({'course' => 'Yoga, Friday evening', 'capacity' => 12, 'peak' => true})
 lesson1.save()
-lesson2 = Lesson.new({'name' => 'Yoga, Wednesday morning', 'capacity' => 10, 'peak' => false})
+lesson2 = Lesson.new({'course' => 'Yoga, Wednesday morning', 'capacity' => 10, 'peak' => false})
 lesson2.save()
-lesson3 = Lesson.new({'name' => 'Cardio, Saturday afternoon', 'capacity' => 15, 'peak' => true})
+lesson3 = Lesson.new({'course' => 'Cardio, Saturday afternoon', 'capacity' => 15, 'peak' => true})
 lesson3.save()
-lesson4 = Lesson.new({'name' => 'Cardio, Monday morning', 'capacity' => 12, 'peak' => false})
+lesson4 = Lesson.new({'course' => 'Cardio, Monday morning', 'capacity' => 12, 'peak' => false})
 lesson4.save()
 
 member_lesson1 = MemberLesson.new({'member_id' => member1.id, 'lesson_id' => lesson1.id})

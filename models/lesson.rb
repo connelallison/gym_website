@@ -5,11 +5,11 @@ require_relative('../db/sql_runner.rb')
 class Lesson
 
 attr_reader :id
-attr_accessor :name, :capacity, :peak
+attr_accessor :course, :capacity, :peak
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
-    @name = options['name']
+    @course = options['course']
     @capacity = options['capacity'].to_i()
     @peak = options['peak']
     @peak = true if (options['peak'] == "t")
@@ -17,11 +17,11 @@ attr_accessor :name, :capacity, :peak
   end
 
   def save()
-    @id = SqlRunner.run("INSERT INTO lessons (name, capacity, peak) VALUES ($1, $2, $3) RETURNING id;", [@name, @capacity, @peak])[0]['id'].to_i()
+    @id = SqlRunner.run("INSERT INTO lessons (course, capacity, peak) VALUES ($1, $2, $3) RETURNING id;", [@course, @capacity, @peak])[0]['id'].to_i()
   end
 
   def update()
-    SqlRunner.run("UPDATE lessons SET (name, capacity, peak) = ($1, $2, $3) WHERE id = $4;", [@capacity, @peak, @name, @id])
+    SqlRunner.run("UPDATE lessons SET (course, capacity, peak) = ($1, $2, $3) WHERE id = $4;", [@capacity, @peak, @course, @id])
   end
 
   def self.delete_all()
@@ -46,7 +46,7 @@ attr_accessor :name, :capacity, :peak
   end
 
   def members()
-    return SqlRunner.run("SELECT * FROM members WHERE lesson = $1;", [@name]).map() { |member| Member.new(member) }
+    return SqlRunner.run("SELECT * FROM members WHERE lesson = $1;", [@course]).map() { |member| Member.new(member) }
   end
 
   def members()

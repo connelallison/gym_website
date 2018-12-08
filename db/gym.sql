@@ -10,7 +10,7 @@ CREATE TABLE members (
 
 CREATE TABLE lessons (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255),
+  course VARCHAR(255),
   capacity INT,
   peak BOOLEAN
 );
