@@ -1,0 +1,27 @@
+<h2 class="lesson-title">Lesson Directory</h2>
+
+<% @lessons.each() { |lesson| %>
+  <p>Name: <%= lesson.name() %></p>
+  <p>Timeslot:
+    <% if (lesson.peak() == true) %>
+    Peak
+    <% elsif (lesson.peak() == false) %>
+    Off-peak
+    <% end %>
+  </p>
+  <p>Capacity: <%=lesson.members.count()%>/<%=lesson.capacity%></p>
+  <hr/>
+  <div class="buttons">
+    <form action="/lessons/<%=lesson.id()%>" method="get">
+      <input class="button" type="submit" value="View this lesson">
+    </form>
+    <form action="/lessons/<%=lesson.id()%>/edit" method="get">
+      <input class="button edit" type="submit" value="Edit this lesson">
+    </form>
+    <form action="/lessons/<%=lesson.id()%>/delete" method="post">
+      <input class="button delete" type="submit" value="Delete this lesson">
+    </form>
+  </div>
+
+  <hr/>
+<%}%>

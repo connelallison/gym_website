@@ -36,6 +36,10 @@ attr_accessor :name, :capacity, :peak
     return SqlRunner.run("SELECT * FROM lessons;").map() { |lesson| Lesson.new( lesson ) }
   end
 
+  def self.all_ascending_id()
+    return SqlRunner.run("SELECT * FROM lessons ORDER BY id ASC;").map() { |lesson| Lesson.new( lesson) }
+  end
+
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM lessons WHERE id = $1;", [id]).first())
     return Lesson.new(result) if (result != nil)
