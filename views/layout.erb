@@ -14,13 +14,13 @@
     <a href="/lessons">View lessons</a>
   <% end %>
   <% if (@show_lessons == "show_lessons") %>
-    <a class="create-new" href="/lessons/new">Add new lesson </a>
+    <a class="create-new" href="/lessons/new">Add lesson </a>
   <% end %>
   <% unless (@show_members == "show_members") %>
     <a href="/members">View members</a>
   <% end %>
   <% if (@show_members == "show_members") %>
-    <a class="create-new" href="/members/new">Add new member </a>
+    <a class="create-new" href="/members/new">Add member </a>
   <% end %>
   </nav>
   <%= yield %>
