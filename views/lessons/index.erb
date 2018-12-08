@@ -2,7 +2,7 @@
 
 <% @lessons.each() { |lesson| %>
   <p>Course: <%= lesson.course() %></p>
-  <p>Timeslot:
+  <p>Type:
     <% if (lesson.peak() == true) %>
     Peak
     <% elsif (lesson.peak() == false) %>

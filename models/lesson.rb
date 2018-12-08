@@ -12,8 +12,8 @@ attr_accessor :course, :capacity, :peak
     @course = options['course']
     @capacity = options['capacity'].to_i()
     @peak = options['peak']
-    @peak = true if (options['peak'] == "t")
-    @peak = false if (options['peak'] == "f")
+    @peak = true if (options['peak'] == "t" || options['peak'] == "true")
+    @peak = false if (options['peak'] == "f" || options['peak'] == "false")
   end
 
   def save()
