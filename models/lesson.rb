@@ -21,7 +21,7 @@ attr_accessor :course, :capacity, :peak
   end
 
   def update()
-    SqlRunner.run("UPDATE lessons SET (course, capacity, peak) = ($1, $2, $3) WHERE id = $4;", [@capacity, @peak, @course, @id])
+    SqlRunner.run("UPDATE lessons SET (course, capacity, peak) = ($1, $2, $3) WHERE id = $4;", [@course, @capacity, @peak, @id])
   end
 
   def self.delete_all()

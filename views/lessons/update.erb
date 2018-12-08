@@ -1,0 +1,21 @@
+<h2>Lesson successfully updated.</h2>
+
+<h3>Lesson details:</h3>
+<p>Course: <%= @lesson.course() %></p>
+<p>Type:
+  <% if (@lesson.peak() == true) %>
+  Peak
+  <% elsif (@lesson.peak() == false) %>
+  Off-peak
+  <% end %>
+</p>
+<p>Capacity: <%=@lesson.members.count()%>/<%=@lesson.capacity%></p>
+<p>Members: </p>
+<ul>
+  <% if (@lesson.members == []) %>
+    <p>none</p>
+  <% else @lesson.members.each() { |member| %>
+    <p><%=member.name()%></p>
+  <% } end %>
+</ul>
+<hr/>
