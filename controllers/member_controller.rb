@@ -1,4 +1,6 @@
 require_relative ("../models/member.rb")
+require_relative ("../models/lesson.rb")
+require_relative ("../models/member_lesson.rb")
 
 get '/members' do
   @members = Member.all_ascending_id()
@@ -24,6 +26,7 @@ end
 post "/members/:id" do
   @member = Member.new(params)
   @member.update()
+  MemberLesson.delete_ineligible()
   erb(:"members/update")
 end
 

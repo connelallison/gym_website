@@ -39,6 +39,32 @@ class Member
     SqlRunner.run("DELETE FROM members where id = $1;", [@id])
   end
 
+  def add_lesson(lesson)
+    if (lesson.capacity > lesson.members.count)
+      unless ((lesson.peak == true) && (self.premium == false))
+
+      else
+        return "This member cannot attend Peak hours lessons without Premium membership."
+      end
+    else
+      return "This lesson is already full to capacity."
+    end
+  end
+
+  def buy_ticket(film, screening)
+      if ((@funds >= film.price) && (screening.ticket_count < screening.capacity))
+        @funds -= film.price
+        self.update()
+        ticket = Ticket.new('customer_id' => @id, 'film_id' => film.id, 'screening_id' => screening.id)
+        return ticket
+      else
+        return "Ticket not issued."
+      end
+    end
+
+
+
+
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM members WHERE id = $1;", [id]).first())
     return Member.new(result) if (result != nil)
