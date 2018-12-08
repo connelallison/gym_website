@@ -29,6 +29,10 @@ class MemberLesson
     SqlRunner.run("DELETE FROM members_lessons;")
   end
 
+  def self.delete_ineligible()
+      SqlRunner.run("DELETE FROM members_lessons WHERE member_id IN (SELECT id FROM members WHERE premium = 'false') AND lesson_id IN (SELECT id FROM lessons WHERE peak = 'true');", [@id])
+  end
+
   def update()
     SqlRunner.run("UPDATE members_lessons SET (member_id, lesson_id) = ($1, $2) WHERE id = $3;", [@member_id, @lesson_id, @id])
   end
