@@ -32,6 +32,19 @@ attr_accessor :course, :capacity, :peak
     SqlRunner.run("DELETE FROM lessons WHERE id = $1", [@id])
   end
 
+  def add_member(member)
+    if (self.capacity > self.members.count)
+      unless ((self.peak == true) && (member.premium == false))
+        member_lesson = MemberLesson.new('member_id' => member.id, 'lesson_id' => self.id)
+        return member_lesson
+      else
+        return "This member cannot attend Peak hours lessons without Premium membership."
+      end
+    else
+      return "This lesson is already full to capacity."
+    end
+  end
+
   def self.all()
     return SqlRunner.run("SELECT * FROM lessons;").map() { |lesson| Lesson.new( lesson ) }
   end
