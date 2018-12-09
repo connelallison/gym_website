@@ -42,7 +42,8 @@ class Member
   def add_lesson(lesson)
     if (lesson.capacity > lesson.members.count)
       unless ((lesson.peak == true) && (self.premium == false))
-
+        member_lesson = MemberLesson.new('member_id' => self.id, 'lesson_id' => lesson.id)
+        return member_lesson
       else
         return "This member cannot attend Peak hours lessons without Premium membership."
       end
@@ -50,20 +51,6 @@ class Member
       return "This lesson is already full to capacity."
     end
   end
-
-  def buy_ticket(film, screening)
-      if ((@funds >= film.price) && (screening.ticket_count < screening.capacity))
-        @funds -= film.price
-        self.update()
-        ticket = Ticket.new('customer_id' => @id, 'film_id' => film.id, 'screening_id' => screening.id)
-        return ticket
-      else
-        return "Ticket not issued."
-      end
-    end
-
-
-
 
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM members WHERE id = $1;", [id]).first())
