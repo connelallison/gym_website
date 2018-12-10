@@ -18,7 +18,7 @@
 </ul>
 <hr/>
 
-<form action="/lessons/<%=@lesson.id()%>/add" method="post" <% if (@lesson.members.count >= @lesson.capacity ) %> hidden <%end%>>
+<form action="/gym/lessons/<%=@lesson.id()%>/add" method="post" <% if (@lesson.members.count >= @lesson.capacity ) %> hidden <%end%>>
   <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
   <select name="member_id" required>
     <option value="" disabled selected>Choose new member</option>
@@ -29,7 +29,7 @@
   <input type="submit" value="Add new member">
 </form>
 
-<form action="/lessons/<%=@lesson.id%>/remove" method="post" <% if (@lesson.members == []) %> hidden <%end%>>
+<form action="/gym/lessons/<%=@lesson.id%>/remove" method="post" <% if (@lesson.members == []) %> hidden <%end%>>
   <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
   <select name="member_id" required>
     <option value="" disabled selected>Choose member to remove</option>
@@ -40,14 +40,14 @@
   <input type="submit" value="Remove a member">
 </form>
 
-<form action="/lessons/<%=@lesson.id()%>/edit" method="get">
+<form action="/gym/lessons/<%=@lesson.id()%>/edit" method="get">
   <input type="submit" value="Edit this lesson">
 </form>
-<form action="/lessons/<%=@lesson.id()%>/delete" method="post">
+<form action="/gym/lessons/<%=@lesson.id()%>/delete" method="post">
   <input type="submit" value="Delete this lesson">
 </form>
 
-<p><a href="/lessons">Return</a> to directory.</p>
+<p><a href="/gym/lessons">Return</a> to directory.</p>
 
 <% if @show_added == 'show_added' %>
 <h3><%=@member%> is now attending <%=@lesson.course%>.</h3>
