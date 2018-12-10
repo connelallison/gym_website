@@ -10,9 +10,10 @@ class Condition
   def initialize(options)
     @id = options['id'].to_i() if options['id']
     @patient_id = options['patient_id'].to_i()
-    @physio_id = options['phsyio_id'].to_i()
+    @physio_id = options['physio_id'].to_i()
     @type = options['type']
     @diagnosed = options['diagnosed']
+    @resolved = options['resolved']
     @resolved = true if (options['resolved'] == "t" || options['resolved'] == "true" )
     @resolved = false if (options['resolved'] == "f" || options['resolved'] == "false" )
   end
@@ -22,15 +23,15 @@ class Condition
   end
 
   def self.all()
-    return SqlRunner.run("SELECT * FROM physios;").map() { |physio| Condition.new(physio) }
+    return SqlRunner.run("SELECT * FROM conditions;").map() { |condition| Condition.new(condition) }
   end
 
   def self.all_ascending_id()
-    return SqlRunner.run("SELECT * FROM physios ORDER BY id ASC;").map() { |physio| Condition.new( physio) }
+    return SqlRunner.run("SELECT * FROM conditions ORDER BY id ASC;").map() { |conditions| Condition.new(conditions) }
   end
 
   def self.delete_all()
-    SqlRunner.run("DELETE FROM physios;")
+    SqlRunner.run("DELETE FROM conditions;")
   end
 
   def update()
@@ -38,7 +39,7 @@ class Condition
   end
 
   def delete()
-    SqlRunner.run("DELETE FROM physios where id = $1;", [@id])
+    SqlRunner.run("DELETE FROM conditions where id = $1;", [@id])
   end
 
   # def add_lesson(lesson)

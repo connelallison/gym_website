@@ -10,14 +10,14 @@ class Patient
   def initialize(options)
     @id = options['id'].to_i() if options['id']
     @patient_name = options['patient_name']
-    @member_id = option['member_id'].to_i() if options['member_id']
+    @member_id = options['member_id'].to_i() if options['member_id']
   end
 
   def save()
     if (@member_id)
-      @id = SqlRunner.run("INSERT INTO patient (patient_name, member_id) VALUES ($1, $2) RETURNING id;", [@patient_name, @member_id])[0]['id'].to_i()
+      @id = SqlRunner.run("INSERT INTO patients (patient_name, member_id) VALUES ($1, $2) RETURNING id;", [@patient_name, @member_id])[0]['id'].to_i()
     else
-      @id = SqlRunner.run("INSERT INTO patient (patient_name) VALUES ($1) RETURNING id;", [@patient_name])[0]['id'].to_i()
+      @id = SqlRunner.run("INSERT INTO patients (patient_name) VALUES ($1) RETURNING id;", [@patient_name])[0]['id'].to_i()
     end
   end
 

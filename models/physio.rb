@@ -13,7 +13,7 @@ class Physio
   end
 
   def save()
-      @id = SqlRunner.run("INSERT INTO physio (physio_name) VALUES ($1) RETURNING id;", [@physio_name])[0]['id'].to_i()
+      @id = SqlRunner.run("INSERT INTO physios (physio_name) VALUES ($1) RETURNING id;", [@physio_name])[0]['id'].to_i()
   end
 
   def self.all()
