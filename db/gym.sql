@@ -20,3 +20,22 @@ CREATE TABLE members_lessons (
   member_id INT REFERENCES members(id) ON DELETE CASCADE,
   lesson_id INT REFERENCES lessons(id) ON DELETE CASCADE
 );
+
+ CREATE TABLE patients (
+   id SERIAL PRIMARY KEY,
+   name VARCHAR(255),
+   member_id INT REFERENCES members(id)
+ )
+
+ CREATE TABLE physios (
+   id SERIAL PRIMARY KEY,
+   physio_name VARCHAR(255)
+ )
+
+ CREATE TABLE conditions (
+   id SERIAL PRIMARY KEY,
+   patient_id INT REFERENCES patients(id) ON DELETE CASCADE,
+   physio_id INT REFERENCES physios(id) ON DELETE CASCADE,
+   diagnosed DATE,
+   resolved BOOLEAN
+ )
