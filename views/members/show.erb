@@ -47,3 +47,11 @@
 </form>
 
 <p><a href="/members">Return</a> to directory.</p>
+
+<% if @show_added == 'show_added' %>
+<h3><%=@member.name%> is now attending <%=@lesson%>.</h3>
+<% end %>
+
+<%  if @show_removed == 'show_removed' %>
+<h3><%=@member.name%> is no longer attending <%=@lesson%>.</h3>
+<% end %>
