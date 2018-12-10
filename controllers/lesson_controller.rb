@@ -24,8 +24,11 @@ get '/lessons/:id/edit' do
 end
 
 post '/lessons/:id/remove' do
+  @member = Member.find(params[:member_id].to_i())
+  @lesson = Lesson.find(params[:lesson_id].to_i())
+  @show_removed = "show_removed"
   MemberLesson.delete_by_member_and_lesson((params[:member_id].to_i()), (params[:lesson_id].to_i()))
-  erb(:"lessons/remove")
+  redirect("/lessons/#{@lesson.id}?show_removed=true&member=#{@member.name}")
 end
 
 post '/lessons/:id/add' do
@@ -34,7 +37,8 @@ post '/lessons/:id/add' do
   @member_lesson = @lesson.add_member(@member)
   @member_lesson.save()
   @members = Member.all()
-  erb(:"lessons/add")
+  @show_added = "show_added"
+  redirect("/lessons/#{@lesson.id}?show_added=true&member=#{@member.name}")
 end
 
 post '/lessons/:id' do
@@ -52,6 +56,9 @@ end
 
 get '/lessons/:id' do
   @lesson = Lesson.find(params[:id].to_i())
+  @show_added = "show_added" if (params[:show_added] == "true")
+  @show_removed = "show_removed" if (params[:show_removed] == "true")
+  @member = params[:member] if ((params[:show_added] == "true") || (params[:show_removed] == "true"))
   @members = Member.all()
   erb(:"lessons/show")
 end

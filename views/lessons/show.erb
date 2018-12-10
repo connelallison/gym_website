@@ -48,3 +48,11 @@
 </form>
 
 <p><a href="/lessons">Return</a> to directory.</p>
+
+<% if @show_added == 'show_added' %>
+<h3><%=@member%> is now attending <%=@lesson.course%>.</h3>
+<% end %>
+
+<%  if @show_removed == 'show_removed' %>
+<h3><%=@member%> is no longer attending <%=@lesson.course%>.</h3>
+<% end %>
