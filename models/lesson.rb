@@ -66,4 +66,8 @@ attr_accessor :course, :capacity, :peak
     return SqlRunner.run("SELECT members.* FROM members_lessons INNER JOIN members ON members_lessons.member_id = members.id WHERE members_lessons.lesson_id = $1;", [@id]).uniq().map() { |member| Member.new(member) }
   end
 
+  def member_ids()
+    return SqlRunner.run("SELECT members.id FROM members_lessons INNER JOIN members ON members_lessons.member_id = members.id WHERE members_lessons.lesson_id = $1;", [@id]).uniq().map() { |member| member["id"].to_i() }
+  end
+
 end

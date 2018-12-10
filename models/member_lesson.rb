@@ -38,7 +38,11 @@ class MemberLesson
   end
 
   def delete()
-    SqlRunner.run("DELETE FROM members_lessons where id = $1;", [@id])
+    SqlRunner.run("DELETE FROM members_lessons WHERE id = $1;", [@id])
+  end
+
+  def self.delete_by_member_and_lesson(member_id, lesson_id)
+    SqlRunner.run("DELETE FROM members_lessons WHERE (member_id, lesson_id) = ($1, $2);", [member_id, lesson_id])
   end
 
   def self.find(id)

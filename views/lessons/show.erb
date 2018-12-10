@@ -18,6 +18,17 @@
 </ul>
 <hr/>
 
+<form action="/lessons/<%=@lesson.id()%>/add" method="post">
+  <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
+  <select name="member_id" required>
+    <option value="" disabled selected>Choose new member</option>
+    <% @members.each() { |member| unless ((member.premium == false && @lesson.peak == true) || (@lesson.member_ids.include?(member.id)))%>
+    <option value="<%=member.id%>"><%=member.name%></option>
+  <% end } %>
+  </select>
+  <input type="submit" value="Add new member">
+</form>
+
 <form action="/lessons/<%=@lesson.id()%>/edit" method="get">
   <input type="submit" value="Edit this lesson">
 </form>

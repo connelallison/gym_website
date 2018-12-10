@@ -1,0 +1,39 @@
+<h2><%=@lesson.course%></h2>
+
+<p>Type:
+  <% if (@lesson.peak() == true) %>
+  Peak
+  <% elsif (@lesson.peak() == false) %>
+  Off-peak
+  <% end %>
+</p>
+<p>Capacity: <%=@lesson.members.count()%>/<%=@lesson.capacity%></p>
+<p>Members: </p>
+<ul>
+  <% if (@lesson.members == []) %>
+    <p>none</p>
+  <% else @lesson.members.each() { |member| %>
+    <p><%=member.name()%></p>
+  <% } end %>
+</ul>
+<hr/>
+
+<form action="/lessons/<%=@lesson.id()%>/add" method="post">
+  <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
+  <select name="member_id" required>
+    <option value="" disabled selected>Choose new member</option>
+    <% @members.each() { |member| unless ((member.premium == false && @lesson.peak == true) || (@lesson.member_ids.include?(member.id)))%>
+    <option value="<%=member.id%>"><%=member.name%></option>
+  <% end } %>
+  </select>
+  <input type="submit" value="Add new member">
+</form>
+
+<form action="/lessons/<%=@lesson.id()%>/edit" method="get">
+  <input type="submit" value="Edit this lesson">
+</form>
+<form action="/lessons/<%=@lesson.id()%>/delete" method="post">
+  <input type="submit" value="Delete this lesson">
+</form>
+
+<h3><%=@member.name%> now attending <%=@lesson.course%>.</h3>

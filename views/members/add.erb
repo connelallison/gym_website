@@ -1,7 +1,5 @@
-<h2><%=@member.name%> now attending <%=@lesson.course%>.</h2>
+<h2><%=@member.name%></h2>
 
-<h3>Member details:</h3>
-<p>Name: <%= @member.name() %></p>
 <p>Membership status:
   <% if (@member.premium() == true) %>
   Premium
@@ -18,3 +16,23 @@
   <% } end %>
 </ul>
 <hr/>
+
+<form action="/members/<%=@member.id()%>/add" method="post">
+  <input type="hidden" name="member_id" value="<%=@member.id%>">
+  <select name="lesson_id" required>
+    <option value="" disabled selected>Choose new lesson</option>
+    <% @lessons.each() { |lesson| unless ((lesson.peak == true && @member.premium == false) || (@member.lesson_ids.include?(lesson.id)))%>
+    <option value="<%=lesson.id%>"><%=lesson.course%></option>
+  <% end } %>
+  </select>
+  <input type="submit" value="Add new lesson">
+</form>
+
+<form action="/members/<%=@member.id()%>/edit" method="get">
+  <input type="submit" value="Edit this member">
+</form>
+<form action="/members/<%=@member.id()%>/delete" method="post">
+  <input type="submit" value="Delete this member">
+</form>
+
+<h3><%=@member.name%> now attending <%=@lesson.course%>.</h3>

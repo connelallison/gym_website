@@ -19,9 +19,9 @@
 
 <form action="/members/<%=@member.id()%>/add" method="post">
   <input type="hidden" name="member_id" value="<%=@member.id%>">
-  <select name="lesson_id">
+  <select name="lesson_id" required>
     <option value="" disabled selected>Choose new lesson</option>
-    <% @lessons.each() { |lesson| unless ((@member.premium == false && lesson.peak == true) || (@member.lesson_ids.include?(lesson.id)))%>
+    <% @lessons.each() { |lesson| unless ((lesson.peak == true && @member.premium == false) || (@member.lesson_ids.include?(lesson.id)))%>
     <option value="<%=lesson.id%>"><%=lesson.course%></option>
   <% end } %>
   </select>

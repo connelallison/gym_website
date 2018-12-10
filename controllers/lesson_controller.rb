@@ -23,6 +23,15 @@ get "/lessons/:id/edit" do
   erb(:"lessons/edit")
 end
 
+post "/lessons/:id/add" do
+  @member = Member.find(params[:member_id].to_i())
+  @lesson = Lesson.find(params[:lesson_id].to_i())
+  @member_lesson = @lesson.add_member(@member)
+  @member_lesson.save()
+  @members = Member.all()
+  erb(:"lessons/add")
+end
+
 post "/lessons/:id" do
   @lesson = Lesson.new(params)
   @lesson.update()
@@ -38,5 +47,6 @@ end
 
 get '/lessons/:id' do
   @lesson = Lesson.find(params[:id].to_i())
+  @members = Member.all()
   erb(:"lessons/show")
 end
