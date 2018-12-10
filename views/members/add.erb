@@ -22,10 +22,21 @@
   <select name="lesson_id" required>
     <option value="" disabled selected>Choose new lesson</option>
     <% @lessons.each() { |lesson| unless ((lesson.peak == true && @member.premium == false) || (@member.lesson_ids.include?(lesson.id)))%>
-    <option value="<%=lesson.id%>"><%=lesson.course%></option>
-  <% end } %>
+      <option value="<%=lesson.id%>"><%=lesson.course%></option>
+    <% end } %>
   </select>
   <input type="submit" value="Add new lesson">
+</form>
+
+<form action="/members/<%=@member.id%>/remove" method="post" <% if (@member.lessons == []) %> hidden <%end%>>
+  <input type="hidden" name="member_id" value="<%=@member.id%>">
+  <select name="lesson_id" required>
+    <option value="" disabled selected>Choose lesson to remove</option>
+    <% @lessons.each() { |lesson| if (@member.lesson_ids.include?(lesson.id))%>
+      <option value="<%=lesson.id%>"><%=lesson.course%></option>
+    <% end } %>
+  </select>
+  <input type="submit" value="Remove a lesson">
 </form>
 
 <form action="/members/<%=@member.id()%>/edit" method="get">
@@ -34,5 +45,7 @@
 <form action="/members/<%=@member.id()%>/delete" method="post">
   <input type="submit" value="Delete this member">
 </form>
+
+<p><a href="/members">Return</a> to directory.</p>
 
 <h3><%=@member.name%> now attending <%=@lesson.course%>.</h3>

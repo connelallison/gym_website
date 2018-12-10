@@ -23,6 +23,11 @@ get "/lessons/:id/edit" do
   erb(:"lessons/edit")
 end
 
+post "/lessons/:id/remove" do
+  MemberLesson.delete_by_member_and_lesson((params[:member_id].to_i()), (params[:lesson_id].to_i()))
+  erb(:"lessons/remove")
+end
+
 post "/lessons/:id/add" do
   @member = Member.find(params[:member_id].to_i())
   @lesson = Lesson.find(params[:lesson_id].to_i())
