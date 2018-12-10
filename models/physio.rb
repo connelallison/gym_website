@@ -14,7 +14,6 @@ class Physio
 
   def save()
       @id = SqlRunner.run("INSERT INTO physio (physio_name) VALUES ($1) RETURNING id;", [@physio_name])[0]['id'].to_i()
-    end
   end
 
   def self.all()
