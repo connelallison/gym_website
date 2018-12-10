@@ -61,4 +61,8 @@ class Member
     return SqlRunner.run("SELECT lessons.* FROM members_lessons INNER JOIN lessons ON members_lessons.lesson_id = lessons.id WHERE members_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| Lesson.new(lesson) }
   end
 
+  def lesson_ids()
+    return SqlRunner.run("SELECT lessons.id FROM members_lessons INNER JOIN lessons ON members_lessons.lesson_id = lessons.id WHERE members_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| lesson["id"].to_i() }
+  end
+
 end

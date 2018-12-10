@@ -14,7 +14,7 @@
   <% if (@member.lessons == []) %>
     <p>none</p>
   <% else @member.lessons.each() { |lesson| %>
-    <p><%=lesson.name()%></p>
+    <p><%=lesson.course()%></p>
   <% } end %>
 </ul>
 <hr/>

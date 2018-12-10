@@ -1,4 +1,4 @@
-<h2><%=@member.name%> now attending <%=@lesson.name%>.</h2>
+<h2><%=@member.name%> now attending <%=@lesson.course%>.</h2>
 
 <h3>Member details:</h3>
 <p>Name: <%= @member.name() %></p>
@@ -14,7 +14,7 @@
   <% if (@member.lessons == []) %>
     <p>none</p>
   <% else @member.lessons.each() { |lesson| %>
-    <p><%=lesson.name()%></p>
+    <p><%=lesson.course()%></p>
   <% } end %>
 </ul>
 <hr/>

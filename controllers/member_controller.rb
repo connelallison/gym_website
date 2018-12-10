@@ -23,7 +23,7 @@ get "/members/:id/edit" do
   erb(:"members/edit")
 end
 
-post "/members/:member_id/:lesson_id" do
+post "/members/:id/add" do
   @member = Member.find(params[:member_id].to_i())
   @lesson = Lesson.find(params[:lesson_id].to_i())
   @member_lesson = @member.add_lesson(@lesson)
