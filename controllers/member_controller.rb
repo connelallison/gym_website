@@ -30,6 +30,14 @@ post "/members/:id" do
   erb(:"members/update")
 end
 
+post "/members/:member_id/:lesson_id" do
+  @member = Member.find(params[:member_id].to_i())
+  @lesson = Lesson.find(params[:lesson_id].to_i())
+  @member_lesson = @member.add_lesson(@lesson)
+  @member_lesson.save()
+  erb(:"members/add")
+end
+
 post '/members' do
   @member = Member.new(params)
   @member.save()
