@@ -17,6 +17,7 @@ class Condition
     @resolved = true if (options['resolved'] == "t" || options['resolved'] == "true" )
     @resolved = false if (options['resolved'] == "f" || options['resolved'] == "false" )
     @resolved_date = options['resolved_date'] if options['resolved_date']
+    @notes = ""
     @notes = options['notes'] if options['notes']
   end
 
@@ -45,7 +46,9 @@ class Condition
   end
 
   def resolve()
-    SqlRunner.run("UPDATE conditions SET (resolved, resolved_date) = (true, $1) WHERE id = $2;", [Date.today, @id]) unless @resolved
+    @notes << "<br>"
+    @notes << "marked as resolved on #{Date.today}"
+    SqlRunner.run("UPDATE conditions SET (resolved, resolved_date, notes) = (true, $1, $2) WHERE id = $3;", [Date.today, @notes, @id]) unless @resolved
   end
 
   def self.find(id)
