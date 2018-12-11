@@ -17,7 +17,7 @@
 <ul>
   <% if (@patient.current_conditions == []) %>
     <p>none</p>
-  <% else @patient.physios.each() { |physio| %>
+  <% else @patient.physios_current.each() { |physio| %>
     <p><%=physio.physio_name%>:</p>
     <ul>
       <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
@@ -27,14 +27,46 @@
   <% } end %>
 </ul>
 <hr/>
-<% unless (@patient.resolved_conditions == 3) %>
+
+
+
+<form action="/wellbeing/patients/<%=@patient.id()%>/add" method="get">
+  <input type="submit" value="Add new condition">
+</form>
+
+<form action="/wellbeing/patients/<%=@patient.id%>/resolve" method="post" <% if (@patient.current_conditions == []) %> hidden <%end%>>
+  <input type="hidden" name="patient_id" value="<%=@patient.id%>">
+  <select name="condition_id" required>
+    <option value="" disabled selected>Resolve a condition</option>
+    <% @patient.current_conditions.each() { |condition| %>
+      <option value="<%=condition.id%>"><%= condition.type %></option>
+    <% } %>
+  </select>
+  <input type="submit" value="Mark condition resolved">
+</form>
+
+<form action="/wellbeing/patients/<%=@patient.id()%>/edit" method="get">
+  <input type="submit" value="Edit this patient">
+</form>
+<form action="/wellbeing/patients/<%=@patient.id()%>/delete" method="post">
+  <input type="submit" value="Delete this patient">
+</form>
+
+<p><a href="/wellbeing/patients">Return</a> to directory.</p>
+<hr>
+
+
+<% unless (@patient.resolved_conditions == []) %>
 <p>Resolved conditions: </p>
 <ul>
-  <% @patient.physios.each() { |physio| %>
+  <% @patient.physios_resolved.each() { |physio| %>
     <p><%=physio.physio_name%>:</p>
     <ul>
       <%@patient.resolved_conditions_by_physio(physio).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
       <% } %>
     </ul>
-  <% } end %>
+<% } %>
+</ul>
+<hr/>
+<% end %>

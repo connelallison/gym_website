@@ -50,8 +50,12 @@ class Condition
     SqlRunner.run("DELETE FROM conditions where id = $1;", [@id])
   end
 
+  def resolve()
+    SqlRunner.run("UPDATE conditions SET resolved = true WHERE id = $1;", [@id]) unless @resolved
+  end
+
   def self.find(id)
-    result = (SqlRunner.run("SELECT * FROM physios WHERE id = $1;", [id]).first())
+    result = (SqlRunner.run("SELECT * FROM conditions WHERE id = $1;", [id]).first())
     return Condition.new(result) if (result != nil)
   end
 

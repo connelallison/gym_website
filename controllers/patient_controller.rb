@@ -24,11 +24,10 @@ get '/wellbeing/patients/:id/edit' do
   erb(:"patients/edit")
 end
 
-post '/wellbeing/patients/:id/remove' do
-  @patient = Patient.find(params[:patient_id].to_i())
-  @physio = Physio.find(params[:physio_id].to_i())
-  @show_removed = "show_removed"
-  Condition.delete_by_patient_and_physio((params[:patient_id].to_i()), (params[:physio_id].to_i()))
+post '/wellbeing/patients/:id/resolve' do
+  @condition = Condition.find(params[:condition_id].to_i())
+  @condition.resolve()
+  redirect("wellbeing/patients/#{params[:patient_id].to_i()}")
   # redirect("/wellbeing/patients/#{@patient.id}?show_removed=true&physio=#{@physio.course}")
 end
 
@@ -57,9 +56,9 @@ end
 
 get '/wellbeing/patients/:id' do
   @patient = Patient.find(params[:id].to_i())
-  @show_added = "show_added" if (params[:show_added] == "true")
-  @show_removed = "show_removed" if (params[:show_removed] == "true")
-  @physio = params[:physio] if ((params[:show_added] == "true") || (params[:show_removed] == "true"))
-  @physios = Physio.all()
+  # @show_added = "show_added" if (params[:show_added] == "true")
+  # @show_removed = "show_removed" if (params[:show_removed] == "true")
+  # @physio = params[:physio] if ((params[:show_added] == "true") || (params[:show_removed] == "true"))
+  @conditions = @patient.conditions()
   erb(:"patients/show")
 end

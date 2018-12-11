@@ -54,6 +54,14 @@ class Physio
     return SqlRunner.run("SELECT patients.id FROM conditions INNER JOIN patients ON conditions.patient_id = patients.id WHERE conditions.physio_id = $1;", [@id]).uniq().map() { |patient| patient["id"].to_i() }
   end
 
+  def patients_current()
+    return SqlRunner.run("SELECT patients.* FROM conditions INNER JOIN patients ON conditions.patient_id = patients.id WHERE (conditions.physio_id, conditions.resolved) = ($1, $2);", [@id, false]).uniq().map() { |patient| Patient.new(patient) }
+  end
+
+  def patients_resolved()
+    return SqlRunner.run("SELECT patients.* FROM conditions INNER JOIN patients ON conditions.patient_id = patients.id WHERE (conditions.physio_id, conditions.resolved) = ($1, $2);", [@id, true]).uniq().map() { |patient| Patient.new(patient) }
+  end
+
   def conditions()
     return SqlRunner.run("SELECT * FROM conditions WHERE conditions.physio_id = $1;", [@id]).map() { |condition| Condition.new(condition) }
   end
