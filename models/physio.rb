@@ -57,9 +57,5 @@ class Physio
   def conditions_by_patient(patient)
     return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.physio_id, conditions.patient_id) = ($1, $2);", [@id, patient.id]).map() { |condition| Condition.new(condition) }
   end
-  #
-  # def lesson_ids()
-  #   return SqlRunner.run("SELECT lessons.id FROM physios_lessons INNER JOIN lessons ON physios_lessons.lesson_id = lessons.id WHERE physios_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| lesson["id"].to_i() }
-  # end
 
 end

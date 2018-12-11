@@ -55,12 +55,24 @@ class Patient
     return Patient.new(result) if (result != nil)
   end
 
-  # def lessons()
-  #   return SqlRunner.run("SELECT lessons.* FROM patients_lessons INNER JOIN lessons ON patients_lessons.lesson_id = lessons.id WHERE patients_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| Lesson.new(lesson) }
-  # end
-  #
-  # def lesson_ids()
-  #   return SqlRunner.run("SELECT lessons.id FROM patients_lessons INNER JOIN lessons ON patients_lessons.lesson_id = lessons.id WHERE patients_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| lesson["id"].to_i() }
-  # end
+  def physios()
+    return SqlRunner.run("SELECT physios.* FROM conditions INNER JOIN physios ON conditions.physio_id = physios.id WHERE conditions.patient_id = $1;", [@id]).uniq().map() { |physio| Physio.new(physio) }
+  end
+
+  def physio_ids()
+    return SqlRunner.run("SELECT physios.id FROM conditions INNER JOIN physios ON conditions.physio_id = physios.id WHERE conditions.patient_id = $1;", [@id]).uniq().map() { |physio| physio["id"].to_i() }
+  end
+
+  def conditions()
+    return SqlRunner.run("SELECT * FROM conditions WHERE conditions.patient_id = $1;", [@id]).map() { |condition| Condition.new(condition) }
+  end
+
+  def condition_ids()
+    return SqlRunner.run("SELECT id FROM conditions WHERE conditions.patient_id = $1;", [@id]).map() { |condition| condition['id'].to_i() }
+  end
+
+  def conditions_by_physio(physio)
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.physio_id) = ($1, $2);", [@id, physio.id]).map() { |condition| Condition.new(condition) }
+  end
 
 end

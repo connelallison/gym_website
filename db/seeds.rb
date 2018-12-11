@@ -56,7 +56,7 @@ condition1 = Condition.new({'patient_id' => patient1.id, 'physio_id' => physio1.
 condition1.save()
 condition2 = Condition.new({'patient_id' => patient2.id, 'physio_id' => physio2.id, 'type' => 'Fractured Pelvis', 'diagnosed' => '2018-05-12', 'resolved' => true})
 condition2.save()
-condition3 = patient2.add_condition(physio2, 'Lower Back Pain')
+condition3 = patient1.add_condition(physio1, 'Lower Back Pain')
 condition3.save()
 
 # binding.pry
