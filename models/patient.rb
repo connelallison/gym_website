@@ -5,7 +5,7 @@ require_relative("./condition.rb")
 class Patient
 
   attr_reader :id
-  attr_accessor :patient_name, :member_id
+  attr_accessor :patient_name, :member_id, :membership
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
