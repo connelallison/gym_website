@@ -1,11 +1,12 @@
 require_relative("../db/sql_runner.rb")
 require_relative("./physio.rb")
 require_relative("./condition.rb")
+require_relative("./member.rb")
 
 class Patient
 
   attr_reader :id
-  attr_accessor :patient_name, :member_id, :membership
+  attr_accessor :patient_name, :member_id, :membership, :premium
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
@@ -13,6 +14,7 @@ class Patient
     @member_id = options['member_id'].to_i() if options['member_id']
     @membership = true if options['member_id']
     @membership = false unless options['member_id']
+    @premium = Member.find(@member_id).premium if options['member_id']
   end
 
   def save()
@@ -80,7 +82,7 @@ class Patient
   def current_condition_ids()
     return SqlRunner.run("SELECT id FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, false]).map() { |condition| condition['id'].to_i() }
   end
-  
+
   def resolved_conditions()
     return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, true]).map() { |condition| Condition.new(condition) }
   end

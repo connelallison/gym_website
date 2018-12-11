@@ -4,12 +4,16 @@
   <p>Name: <%= patient.patient_name() %></p>
   <p>Member:
     <% if patient.membership %>
-    Yes
+    Yes - <% if (patient.premium() == true) %>
+            Premium
+          <% elsif (patient.premium() == false) %>
+            Standard
+          <% end %>
+          (ID: <%= patient.member_id %>)
     <% else %>
     No
     <% end %>
   </p>
-  <% if patient.membership %><p>Member ID: <%= patient.member_id %></p> <% end %>
   <p>Current conditions: <%=patient.current_conditions.count()%></p>
   <hr/>
   <div class="buttons">
