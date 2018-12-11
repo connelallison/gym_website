@@ -73,6 +73,22 @@ class Patient
     return SqlRunner.run("SELECT id FROM conditions WHERE conditions.patient_id = $1;", [@id]).map() { |condition| condition['id'].to_i() }
   end
 
+  def current_conditions()
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, false]).map() { |condition| Condition.new(condition) }
+  end
+
+  def current_condition_ids()
+    return SqlRunner.run("SELECT id FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, false]).map() { |condition| condition['id'].to_i() }
+  end
+  
+  def resolved_conditions()
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, true]).map() { |condition| Condition.new(condition) }
+  end
+
+  def resolved_condition_ids()
+    return SqlRunner.run("SELECT id FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2);", [@id, true]).map() { |condition| condition['id'].to_i() }
+  end
+
   def conditions_by_physio(physio)
     return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.physio_id) = ($1, $2);", [@id, physio.id]).map() { |condition| Condition.new(condition) }
   end
