@@ -18,7 +18,7 @@ post '/wellbeing/patients/:id/delete' do
   @patient = Patient.find(params[:id].to_i())
   if (@patient == nil); redirect('/wellbeing/patients'); end
   if (@patient!= nil); @patient.delete(); end
-  erb(:"patients/delete")
+  redirect("/wellbeing/patients")
 end
 
 get '/wellbeing/patients/:id/edit' do
@@ -91,7 +91,7 @@ post '/wellbeing/patients/:id' do
   end
   @patient = Patient.find(params[:id].to_i())
   @conditions = @patient.conditions
-  erb(:"patients/show")
+  redirect("/wellbeing/patients/#{params[:id].to_i()}")
 end
 
 
