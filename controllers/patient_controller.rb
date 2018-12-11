@@ -45,17 +45,20 @@ end
 
 post '/wellbeing/patients/:id' do
   @patient = Patient.find(params[:id].to_i())
-  @conditions = @patient.conditions
   if (params['member'] == "false")
     if (params['membership'] == 'standard')
-      @member_id = Member.new('name' => params['patient_name'], 'member' => false).save()
-
-      Patient.new({'id' => params[:id], 'patient_name' => params['patient_name'], 'member_id' => @member_id}).update()
+      @member_id = Member.new('name' => params['patient_name'], 'premium' => false).save()
+      @patient.patient_name = params['patient_name']
+      @patient.member_id = @member_id
+      @patient.update()
     elsif (params['membership'] == 'premium')
       @member_id = Member.new('name' => params['patient_name'], 'premium' => true).save()
-      Patient.new({'id' => params[:id], 'patient_name' => params['patient_name'], 'member_id' => @member_id}).update()
+      @patient.patient_name = params['patient_name']
+      @patient.member_id = @member_id
+      @patient.update()
     elsif (params['membership'] == 'no')
-      Patient.new({'id' => params[:id], 'patient_name' => params['patient_name']}).update()
+      @patient.patient_name = params['patient_name']
+      @patient.update()
     end
   elsif (params['member'] == "true")
     if (params['membership'] == 'standard')
@@ -65,7 +68,8 @@ post '/wellbeing/patients/:id' do
         @member.premium = false
         @member.update()
       end
-      @patient.update
+      @patient.patient_name = params['patient_name']
+      @patient.update()
     elsif (params['membership'] == 'premium')
       @member_id = Patient.find(params[:id].to_i()).member_id
       if (@patient.premium == false)
@@ -74,14 +78,19 @@ post '/wellbeing/patients/:id' do
         @member.premium = true
         @member.update()
       end
-      Patient.new({'id' => params[:id], 'patient_name' => params['patient_name'], 'member_id' => @member_id}).update()
+      @patient.patient_name = params['patient_name']
+      @patient.update()
     elsif (params['membership'] == 'no')
       @member_id = Patient.find(params[:id].to_i()).member_id
       @member = Member.find(@member_id)
       @member.delete()
-      Patient.new({'id' => params[:id], 'patient_name' => params['patient_name']}).update()
+      @patient = Patient.find(params[:id].to_i())
+      @patient.patient_name = params['patient_name']
+      @patient.update()
     end
   end
+  @patient = Patient.find(params[:id].to_i())
+  @conditions = @patient.conditions
   erb(:"patients/show")
 end
 

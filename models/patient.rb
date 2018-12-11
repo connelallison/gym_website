@@ -12,9 +12,9 @@ class Patient
     @id = options['id'].to_i() if options['id']
     @patient_name = options['patient_name']
     @member_id = options['member_id'].to_i() if options['member_id']
-    @membership = true if options['member_id']
-    @membership = false unless options['member_id']
-    @member = Member.find(@member_id) if options['member_id']
+    @membership = true if @member_id.is_a? Integer
+    @membership = false unless @member_id.is_a? Integer
+    @member = Member.find(@member_id) if @member_id.is_a? Integer
     @premium = Member.find(@member_id).premium if options['member_id']
   end
 
@@ -39,7 +39,7 @@ class Patient
   end
 
   def update()
-    if (@member_id)
+    if @member_id.is_a? Integer
       SqlRunner.run("UPDATE patients SET (patient_name, member_id) = ($1, $2) WHERE id = $3;", [@patient_name, @member_id, @id])
     else
       SqlRunner.run("UPDATE patients SET patient_name = $1 WHERE id = $2;", [@patient_name, @id])
