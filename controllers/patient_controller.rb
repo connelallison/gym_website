@@ -28,10 +28,10 @@ get '/wellbeing/patients/:id/edit' do
   erb(:"patients/edit")
 end
 
-post '/wellbeing/patients/:id/resolve' do
+post '/wellbeing/patients/:id/resolve/:condition_id' do
   @condition = Condition.find(params[:condition_id].to_i())
   @condition.resolve()
-  redirect("wellbeing/patients/#{params[:patient_id].to_i()}")
+  redirect("wellbeing/patients/#{params[:id].to_i()}")
   # redirect("/wellbeing/patients/#{@patient.id}?show_removed=true&physio=#{@physio.course}")
 end
 
@@ -117,4 +117,12 @@ get '/wellbeing/patients/:id' do
   # @physio = params[:physio] if ((params[:show_added] == "true") || (params[:show_removed] == "true"))
   @conditions = @patient.conditions()
   erb(:"patients/show")
+end
+
+get '/wellbeing/conditions/:id' do
+  @condition = Condition.find(params[:id])
+  @patient_name = @condition.patient.patient_name
+  @physio_name = @condition.physio.physio_name
+  @return_patient = "return_patient"
+  erb(:"conditions/show")
 end

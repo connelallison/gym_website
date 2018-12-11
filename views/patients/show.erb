@@ -23,8 +23,14 @@
       <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
         <p><%=condition.type%></p>
         <p>Diagnosed: <%=condition.diagnosed%></p>
-        <form action="/wellbeing/patients/<%=@patient.id()%>/edit_condition" method="get">
+        <form action="/wellbeing/conditions/<%=condition.id%>" method="get">
+          <input type="submit" value="View this condition">
+        </form>
+        <form action="/wellbeing/patients/<%=@patient.id%>/edit_condition" method="get">
           <input type="submit" value="Edit this condition">
+        </form>
+        <form action="/wellbeing/patients/<%=@patient.id%>/resolve/<%=condition.id%>" method="post">
+          <input type="submit" value="Mark this as resolved">
         </form>
       <% } %>
     </ul>
@@ -36,17 +42,6 @@
 
 <form action="/wellbeing/patients/<%=@patient.id()%>/add" method="get">
   <input type="submit" value="Add new condition">
-</form>
-
-<form action="/wellbeing/patients/<%=@patient.id%>/resolve" method="post" <% if (@patient.current_conditions == []) %> hidden <%end%>>
-  <input type="hidden" name="patient_id" value="<%=@patient.id%>">
-  <select name="condition_id" required>
-    <option value="" disabled selected>Resolve a condition</option>
-    <% @patient.current_conditions.each() { |condition| %>
-      <option value="<%=condition.id%>"><%= condition.type %></option>
-    <% } %>
-  </select>
-  <input type="submit" value="Mark condition resolved">
 </form>
 
 <form action="/wellbeing/patients/<%=@patient.id()%>/edit" method="get">
@@ -68,6 +63,12 @@
     <ul>
       <%@patient.resolved_conditions_by_physio(physio).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+        <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
+          <input type="submit" value="View this condition">
+        </form>
+        <form action="/wellbeing/patients/<%=@patient.id()%>/edit_condition" method="get">
+          <input type="submit" value="Edit this condition">
+        </form>
       <% } %>
     </ul>
 <% } %>

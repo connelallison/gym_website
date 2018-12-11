@@ -1,0 +1,11 @@
+<p>Patient name: <%=@patient_name%></p>
+<p>Physio name: <%=@physio_name%></p>
+<p>Type: <%=@condition.type%></p>
+<p>Date diagnosed: <%=@condition.diagnosed%></p>
+<p>Resolved: <% if (@condition.resolved) %> Yes <% else %> No <% end %>
+<%if @condition.resolved%> <p>Date resolved: <%=@condition.resolved_date%></p> <% end %>
+<p>Notes: </p>
+<p><%=@condition.notes%></p>
+
+<%if (@return_patient == "return_patient") %><p><a href="/wellbeing/patients/<%=@condition.patient_id%>">Return</a> to patient.</p> <%end%>
+<%if (@return_physio == "return_physio") %><p><a href="/wellbeing/physios/<%=@condition.physio_id%>">Return</a> to physio.</p> <%end%>
