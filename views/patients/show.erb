@@ -1,0 +1,40 @@
+<h2><%=@patient.patient_name%></h2>
+
+<p>Member:
+  <% if @patient.membership %>
+  Yes - <% if (@patient.premium() == true) %>
+          Premium
+        <% elsif (@patient.premium() == false) %>
+          Standard
+        <% end %>
+        (ID: <%= @patient.member_id %>)
+  <% else %>
+  No
+  <% end %>
+</p>
+<hr>
+<p>Current conditions: </p>
+<ul>
+  <% if (@patient.current_conditions == []) %>
+    <p>none</p>
+  <% else @patient.physios.each() { |physio| %>
+    <p><%=physio.physio_name%>:</p>
+    <ul>
+      <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
+        <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+      <% } %>
+    </ul>
+  <% } end %>
+</ul>
+<hr/>
+<% unless (@patient.resolved_conditions == 3) %>
+<p>Resolved conditions: </p>
+<ul>
+  <% @patient.physios.each() { |physio| %>
+    <p><%=physio.physio_name%>:</p>
+    <ul>
+      <%@patient.resolved_conditions_by_physio(physio).each() { |condition|%>
+        <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+      <% } %>
+    </ul>
+  <% } end %>
