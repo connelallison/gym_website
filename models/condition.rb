@@ -12,8 +12,16 @@ class Condition
     @patient_id = options['patient_id'].to_i()
     @physio_id = options['physio_id'].to_i()
     @type = options['type']
-    @diagnosed = options['diagnosed']
-    @resolved = options['resolved']
+    if (options['diagnosed'])
+      @diagnosed = options['diagnosed']
+    else
+      @diagnosed = Date.today
+    end
+    if (options['resolved'])
+      @resolved = options['resolved']
+    else
+      @resolved = false
+    end
     @resolved = true if (options['resolved'] == "t" || options['resolved'] == "true" )
     @resolved = false if (options['resolved'] == "f" || options['resolved'] == "false" )
   end

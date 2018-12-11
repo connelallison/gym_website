@@ -36,18 +36,10 @@ class Physio
     SqlRunner.run("DELETE FROM physios where id = $1;", [@id])
   end
 
-  # def add_lesson(lesson)
-  #   if (lesson.capacity > lesson.physios.count)
-  #     unless ((lesson.peak == true) && (self.premium == false))
-  #       member_lesson = PhysioLesson.new('member_id' => self.id, 'lesson_id' => lesson.id)
-  #       return member_lesson
-  #     else
-  #       return "This member cannot attend Peak hours lessons without Premium physioship."
-  #     end
-  #   else
-  #     return "This lesson is already full to capacity."
-  #   end
-  # end
+  def add_condition(patient, type)
+    condition = Condition.new('patient_id' => patient.id, 'physio_id' => self.id, 'type' => type)
+    return condition
+  end
 
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM physios WHERE id = $1;", [id]).first())
