@@ -21,7 +21,11 @@
     <p><%=physio.physio_name%>:</p>
     <ul>
       <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
-        <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+        <p><%=condition.type%></p>
+        <p>Diagnosed: <%=condition.diagnosed%></p>
+        <form action="/wellbeing/patients/<%=@patient.id()%>/edit_condition" method="get">
+          <input type="submit" value="Edit this condition">
+        </form>
       <% } %>
     </ul>
   <% } end %>
