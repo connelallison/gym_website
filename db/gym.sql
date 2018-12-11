@@ -41,5 +41,7 @@ CREATE TABLE members_lessons (
    physio_id INT REFERENCES physios(id) ON DELETE CASCADE,
    type VARCHAR(255),
    diagnosed DATE,
-   resolved BOOLEAN
+   resolved BOOLEAN,
+   resolved_date DATE,
+   notes TEXT
  );

@@ -12,18 +12,12 @@ class Condition
     @patient_id = options['patient_id'].to_i()
     @physio_id = options['physio_id'].to_i()
     @type = options['type']
-    if (options['diagnosed'])
-      @diagnosed = options['diagnosed']
-    else
-      @diagnosed = Date.today
-    end
-    if (options['resolved'])
-      @resolved = options['resolved']
-    else
-      @resolved = false
-    end
+    if (options['diagnosed']); @diagnosed = options['diagnosed']; else; @diagnosed = Date.today; end
+    if (options['resolved']); @resolved = options['resolved']; else; @resolved = false; end
     @resolved = true if (options['resolved'] == "t" || options['resolved'] == "true" )
     @resolved = false if (options['resolved'] == "f" || options['resolved'] == "false" )
+    @resolved_date = options['resolved_date'] if options['resolved_date']
+    @notes = options['notes'] if options['notes']
   end
 
   def save()

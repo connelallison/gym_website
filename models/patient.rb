@@ -6,7 +6,7 @@ require_relative("./member.rb")
 class Patient
 
   attr_reader :id
-  attr_accessor :patient_name, :member_id, :membership, :premium
+  attr_accessor :patient_name, :member_id, :membership, :premium, :member
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
@@ -14,6 +14,7 @@ class Patient
     @member_id = options['member_id'].to_i() if options['member_id']
     @membership = true if options['member_id']
     @membership = false unless options['member_id']
+    @member = Member.find(@member_id) if options['member_id']
     @premium = Member.find(@member_id).premium if options['member_id']
   end
 
