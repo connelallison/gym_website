@@ -23,6 +23,10 @@ class Member
     return SqlRunner.run("SELECT * FROM members;").map() { |member| Member.new(member) }
   end
 
+  def self.all_ids()
+    return SqlRunner.run("SELECT id FROM members;").map() { |member| member['id'].to_i() }
+  end
+
   def self.all_ascending_id()
     return SqlRunner.run("SELECT * FROM members ORDER BY id ASC;").map() { |member| Member.new( member) }
   end

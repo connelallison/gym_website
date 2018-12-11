@@ -2,16 +2,16 @@
 
 <% @patients.each() { |patient| %>
   <p>Name: <%= patient.patient_name() %></p>
-  <p>Member:
+  <p>Membership:
     <% if patient.membership %>
-    Yes - <% if (patient.premium() == true) %>
-            Premium
-          <% elsif (patient.premium() == false) %>
-            Standard
-          <% end %>
-          (ID: <%= patient.member_id %>)
+      <% if (patient.premium() == true) %>
+        Premium
+      <% elsif (patient.premium() == false) %>
+        Standard
+      <% end %>
+      (ID: <%= patient.member_id %>)
     <% else %>
-    No
+    None
     <% end %>
   </p>
   <p>Current conditions: <%=patient.current_conditions.count()%></p>

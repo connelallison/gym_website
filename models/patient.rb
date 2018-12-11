@@ -30,6 +30,10 @@ class Patient
     return SqlRunner.run("SELECT * FROM patients;").map() { |patient| Patient.new(patient) }
   end
 
+  def self.all_member_ids()
+    return SqlRunner.run("SELECT member_id FROM patients;").map() { |patient| patient['member_id'].to_i() }
+  end
+
   def self.all_ascending_id()
     return SqlRunner.run("SELECT * FROM patients ORDER BY id ASC;").map() { |patient| Patient.new( patient) }
   end

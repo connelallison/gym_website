@@ -1,15 +1,15 @@
 <h2><%=@patient.patient_name%></h2>
 
-<p>Member:
+<p>Membership:
   <% if @patient.membership %>
-  Yes - <% if (@patient.premium() == true) %>
-          Premium
-        <% elsif (@patient.premium() == false) %>
-          Standard
-        <% end %>
-        (ID: <%= @patient.member_id %>)
+    <% if (@patient.premium() == true) %>
+      Premium
+    <% elsif (@patient.premium() == false) %>
+      Standard
+    <% end %>
+    (ID: <%= @patient.member_id %>)
   <% else %>
-  No
+  None
   <% end %>
 </p>
 <hr>

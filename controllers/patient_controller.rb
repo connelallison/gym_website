@@ -11,6 +11,8 @@ get '/wellbeing/patients' do
 end
 
 get '/wellbeing/patients/new' do
+  @members = Member.all()
+  @patient_member_ids = Patient.all_member_ids()
   erb(:"patients/new")
 end
 
@@ -97,9 +99,15 @@ end
 
 
 post '/wellbeing/patients' do
-  @patient = Patient.new(params)
-  @patient.save()
-  erb(:"patients/create")
+  @member_ids = Member.all_ids()
+  if (@member_ids.include?(params['member_id'].to_i()))
+    @patient = Patient.new(params)
+    @patient.save()
+  else
+    @patient = Patient.new({'patient_name' => params['patient_name']})
+    @patient.save()
+  end
+  redirect("wellbeing/patients")
 end
 
 get '/wellbeing/patients/:id' do

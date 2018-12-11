@@ -1,0 +1,21 @@
+<p>Add new patient:</p>
+
+
+
+<form action="/wellbeing/patients" method="post" autocomplete="off">
+  <label for="patient_name">Full Name:</label>
+  <input type="text" name="patient_name" list="member_names">
+  <datalist id="member_names">
+    <% @members.each() { |member| unless (@patient_member_ids.include?(member.id))%>
+    <option value="<%=member.name%>">
+    <% end } %>
+  </datalist>
+  <label for="member_id">ID (if existing member):</label>
+  <input type="text" name="member_id" list="member_ids">
+  <datalist id="member_ids">
+    <% @members.each() { |member| unless (@patient_member_ids.include?(member.id))%>
+    <option value="<%=member.id%>">
+    <% end } %>
+  </datalist>
+  <input type="submit" value="Add patient">
+</form>

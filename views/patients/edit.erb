@@ -2,15 +2,15 @@
 
 <form action="/wellbeing/patients/<%=@patient.id()%>" method="post">
   <input type="hidden" name="member" value="<%=@patient.membership%>">
-  <% if (@patient.membership == true) %> <input type="hidden" name="membertype" value="<%=@patient.premium%>"> <%end%> 
+  <% if (@patient.membership == true) %> <input type="hidden" name="membertype" value="<%=@patient.premium%>"> <%end%>
   <label for="patient_name">Full Name:</label>
   <input type="text" name="patient_name" value="<%=@patient.patient_name%>">
 
-  <label for="membership">Member:</label>
+  <label for="membership">Membership:</label>
   <select name="membership">
     <option <% if (@patient.premium == true) %> selected <%end%> value=<%="premium"%> >Premium</option>
     <option <% if (@patient.premium == false) %> selected <%end%> value=<%="standard"%> >Standard</option>
-    <option <% if (@patient.membership == false) %> selected <%end%> value=<%="no"%> >No</option>
+    <option <% if (@patient.membership == false) %> selected <%end%> value=<%="no"%> >None</option>
   </select>
   <input type="submit" value="Update patient">
 </form>
