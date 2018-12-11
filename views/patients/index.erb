@@ -1,0 +1,28 @@
+<h2 class="patient-title">Patient Directory</h2>
+
+<% @patients.each() { |patient| %>
+  <p>Name: <%= patient.patient_name() %></p>
+  <p>Member:
+    <% if patient.membership %>
+    Yes
+    <% else %>
+    No
+    <% end %>
+  </p>
+  <p>Member ID: <%= patient.member_id %></p> <% if patient.membership %>
+  <p>Conditions: <%=patient.conditions.count()%></p>
+  <hr/>
+  <div class="buttons">
+    <form action="/wellbeing/patients/<%=patient.id()%>" method="get">
+      <input class="button" type="submit" value="View this patient">
+    </form>
+    <form action="/wellbeing/patients/<%=patient.id()%>/edit" method="get">
+      <input class="button edit" type="submit" value="Edit this patient">
+    </form>
+    <form action="/wellbeing/patients/<%=patient.id()%>/delete" method="post">
+      <input class="button delete" type="submit" value="Delete this patient">
+    </form>
+  </div>
+
+  <hr/>
+<%}%>

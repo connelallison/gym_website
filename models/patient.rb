@@ -11,6 +11,8 @@ class Patient
     @id = options['id'].to_i() if options['id']
     @patient_name = options['patient_name']
     @member_id = options['member_id'].to_i() if options['member_id']
+    @membership = true if options['member_id']
+    @membership = false unless options['member_id']
   end
 
   def save()

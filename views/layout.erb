@@ -22,6 +22,18 @@
   <% if (@show_members == "show_members") %>
     <a class="create-new" href="/gym/members/new">Add member </a>
   <% end %>
+  <% unless (@show_physios == "show_physios") %>
+    <a href="/wellbeing/physios">View physios</a>
+  <% end %>
+  <% if (@show_physios == "show_physios") %>
+    <a class="create-new" href="/wellbeing/physios/new">Add physio </a>
+  <% end %>
+  <% unless (@show_patients == "show_patients") %>
+    <a href="/wellbeing/patients">View patients</a>
+  <% end %>
+  <% if (@show_patients == "show_patients") %>
+    <a class="create-new" href="/wellbeing/patients/new">Add patient </a>
+  <% end %>
   </nav>
   <%= yield %>
 </body>
