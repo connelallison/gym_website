@@ -46,9 +46,17 @@ class Physio
     return Physio.new(result) if (result != nil)
   end
 
-  # def lessons()
-  #   return SqlRunner.run("SELECT lessons.* FROM physios_lessons INNER JOIN lessons ON physios_lessons.lesson_id = lessons.id WHERE physios_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| Lesson.new(lesson) }
-  # end
+  def patients()
+    return SqlRunner.run("SELECT patients.* FROM conditions INNER JOIN patients ON conditions.patient_id = patients.id WHERE conditions.physio_id = $1;", [@id]).uniq().map() { |patient| Patient.new(patient) }
+  end
+
+  def patient_ids()
+    return SqlRunner.run("SELECT patients.id FROM conditions INNER JOIN patients ON conditions.patient_id = patients.id WHERE conditions.physio_id = $1;", [@id]).uniq().map() { |patient| patient["id"].to_i() }
+  end
+
+  def conditions_by_patient(patient)
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.physio_id, conditions.patient_id) = ($1, $2);", [@id, patient.id]).map() { |condition| Condition.new(condition) }
+  end
   #
   # def lesson_ids()
   #   return SqlRunner.run("SELECT lessons.id FROM physios_lessons INNER JOIN lessons ON physios_lessons.lesson_id = lessons.id WHERE physios_lessons.member_id = $1;", [@id]).uniq().map() { |lesson| lesson["id"].to_i() }
