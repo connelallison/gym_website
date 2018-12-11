@@ -2,7 +2,7 @@
 
 <form action="/wellbeing/patients/<%=@patient.id()%>" method="post">
   <input type="hidden" name="member" value="<%=@patient.membership%>">
-  <% if (@patient.premium == true) %> <input type="hidden" name="membertype" value="<%=@patient.premium%>"> <%end%> 
+  <% if (@patient.membership == true) %> <input type="hidden" name="membertype" value="<%=@patient.premium%>"> <%end%> 
   <label for="patient_name">Full Name:</label>
   <input type="text" name="patient_name" value="<%=@patient.patient_name%>">
 

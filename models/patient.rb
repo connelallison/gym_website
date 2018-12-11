@@ -42,7 +42,7 @@ class Patient
     if (@member_id)
       SqlRunner.run("UPDATE patients SET (patient_name, member_id) = ($1, $2) WHERE id = $3;", [@patient_name, @member_id, @id])
     else
-      SqlRunner.run("UPDATE patients SET (patient_name) = ($1) WHERE id = $2;", [@patient_name, @id])
+      SqlRunner.run("UPDATE patients SET patient_name = $1 WHERE id = $2;", [@patient_name, @id])
     end
   end
 

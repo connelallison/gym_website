@@ -36,6 +36,7 @@ class Member
   end
 
   def delete()
+    SqlRunner.run("UPDATE patients SET member_id = null WHERE member_id = $1;", [@id])
     SqlRunner.run("DELETE FROM members where id = $1;", [@id])
   end
 

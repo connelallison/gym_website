@@ -27,7 +27,7 @@ CREATE TABLE members_lessons (
  CREATE TABLE patients (
    id SERIAL PRIMARY KEY,
    patient_name VARCHAR(255),
-   member_id INT REFERENCES members(id)
+   member_id INT REFERENCES members(id) ON DELETE CASCADE
  );
 
  CREATE TABLE physios (
