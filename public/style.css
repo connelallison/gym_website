@@ -54,7 +54,7 @@ select, input[type="text"], input[type="number"], input[type="date"] {
 }
 
 .note {
-  width: 600px;
+  width: 400px;
 }
 
 input[type="submit"].homebutton {
