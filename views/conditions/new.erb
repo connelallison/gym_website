@@ -2,7 +2,7 @@
   <label for="patient_id">Patient:</label>
   <select name="patient_id" required>
     <% @patients.each() { |patient| %>
-    <option value="<%=patient.id%>"><%=patient.patient_name%></option>
+    <option <% if (@patient.id == patient.id) %> selected <% end %> value="<%=patient.id%>"><%=patient.patient_name%></option>
   <% } %>
   </select>
   <label for="physio_id">Physio:</label>
@@ -17,3 +17,5 @@
   <input type="text" name="notes">
   <input type="submit" value="Add condition">
 </form>
+
+<p><a class="return" href="/wellbeing/patients/<%=@patient.id%>">Return</a> to patient.</p>

@@ -42,6 +42,7 @@
           <input type="submit" value="View this condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
+          <input type="hidden" name="patient_id" value="<%=@patient.id%>">
           <input type="submit" value="Edit this condition">
         </form>
         <form action="/wellbeing/patients/<%=@patient.id%>/resolve/<%=condition.id%>" method="post">
@@ -56,6 +57,7 @@
 
 
 <form action="/wellbeing/conditions/new" method="get">
+  <input type="hidden" name="patient_id" value="<%=@patient.id%>">
   <input type="submit" value="Add new condition">
 </form>
 
@@ -66,7 +68,7 @@
   <input type="submit" value="Delete this patient">
 </form>
 
-<p><a href="/wellbeing/patients">Return</a> to directory.</p>
+<p><a class="return" href="/wellbeing/patients">Return</a> to directory.</p>
 <hr>
 
 

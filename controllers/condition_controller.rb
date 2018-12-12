@@ -25,6 +25,7 @@ end
 
 
 get '/wellbeing/conditions/new' do
+  @patient = Patient.find(params['patient_id'])
   @patients = Patient.all()
   @physios = Physio.all()
   erb(:"conditions/new")
@@ -44,6 +45,5 @@ end
 
 get '/wellbeing/conditions/:id' do
   @condition = Condition.find(params[:id])
-  @return_patient = "return_patient"
   erb(:"conditions/show")
 end
