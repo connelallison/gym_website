@@ -1,7 +1,7 @@
 <h3>Edit condition:</h3>
 <br>
 
-<form action="/wellbeing/conditions/<%=@condition.id()%>" method="post">
+<form action="/wellbeing/conditions/<%=@condition.id()%>" method="post" autocomplete="off">
   <p>Patient name: <%=@condition.patient.patient_name%></p>
   <input type="hidden" name="patient_id" value="<%=@condition.patient.id%>">
   <label for="physio_id">Physio:</label>
@@ -16,4 +16,6 @@
   <input type="submit" value="Update condition">
 </form>
 
+<br>
 <p><a class="return" href="/wellbeing/patients/<%=@condition.patient_id%>">Return</a> to patient.</p>
+<p><a class="return" href="/wellbeing/physios/<%=@condition.physio_id%>">Return</a> to physio.</p>

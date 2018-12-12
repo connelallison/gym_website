@@ -1,7 +1,7 @@
 <h3>Edit member:</h3>
 <br>
 
-<form action="/gym/members/<%=@member.id()%>" method="post">
+<form action="/gym/members/<%=@member.id()%>" method="post" autocomplete="off">
   <label for="name">Full Name:</label>
   <input type="text" name="name" value="<%=@member.name%>">
 
@@ -12,6 +12,7 @@
   </select>
   <input type="submit" value="Update member">
 </form>
+<br>
 
 <p><a class="return" href="/gym/members/<%=@member.id()%>">Return</a> to member.</p>
 <p><a class="return" href="/gym/members">Return</a> to directory.</p>

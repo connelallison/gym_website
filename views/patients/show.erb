@@ -23,13 +23,13 @@
       <% @patient.current_conditions_unassigned.each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
-          <input type="submit" value="View this condition">
+          <input type="submit" value="View condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
-          <input type="submit" value="Edit this condition">
+          <input type="submit" value="Edit condition">
         </form>
         <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
-          <input type="submit" value="Delete this condition">
+          <input type="submit" value="Delete condition">
         </form>
       <% } %>
     </ul>
@@ -39,14 +39,14 @@
       <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id%>" method="get">
-          <input type="submit" value="View this condition">
+          <input type="submit" value="View condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
           <input type="hidden" name="patient_id" value="<%=@patient.id%>">
-          <input type="submit" value="Edit this condition">
+          <input type="submit" value="Edit condition">
         </form>
         <form action="/wellbeing/patients/<%=@patient.id%>/resolve/<%=condition.id%>" method="post">
-          <input type="submit" value="Mark this as resolved">
+          <input type="submit" value="Mark as resolved">
         </form>
       <% } %>
     </ul>
@@ -58,14 +58,14 @@
 
 <form action="/wellbeing/conditions/new" method="get">
   <input type="hidden" name="patient_id" value="<%=@patient.id%>">
-  <input type="submit" value="Add new condition">
+  <input type="submit" value="Add condition">
 </form>
 
 <form action="/wellbeing/patients/<%=@patient.id()%>/edit" method="get">
-  <input type="submit" value="Edit this patient">
+  <input type="submit" value="Edit patient">
 </form>
 <form action="/wellbeing/patients/<%=@patient.id()%>/delete" method="post">
-  <input type="submit" value="Delete this patient">
+  <input type="submit" value="Delete patient">
 </form>
 
 <p><a class="return" href="/wellbeing/patients">Return</a> to directory.</p>
@@ -80,13 +80,13 @@
     <% @patient.resolved_conditions_unassigned.each() { |condition|%>
       <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
       <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
-        <input type="submit" value="View this condition">
+        <input type="submit" value="View condition">
       </form>
       <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
-        <input type="submit" value="Edit this condition">
+        <input type="submit" value="Edit condition">
       </form>
       <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
-        <input type="submit" value="Delete this condition">
+        <input type="submit" value="Delete condition">
       </form>
     <% } %>
   </ul>
@@ -96,13 +96,13 @@
       <%@patient.resolved_conditions_by_physio(physio).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
-          <input type="submit" value="View this condition">
+          <input type="submit" value="View condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
-          <input type="submit" value="Edit this condition">
+          <input type="submit" value="Edit condition">
         </form>
         <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
-          <input type="submit" value="Delete this condition">
+          <input type="submit" value="Delete condition">
         </form>
       <% } %>
     </ul>

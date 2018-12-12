@@ -20,31 +20,31 @@
 
 <form action="/gym/lessons/<%=@lesson.id()%>/add" method="post" <% if (@lesson.members.count >= @lesson.capacity ) %> hidden <%end%>>
   <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
+  <input type="submit" value="Add new member">
   <select name="member_id" required>
     <option value="" disabled selected>Choose new member</option>
     <% @members.each() { |member| unless ((member.premium == false && @lesson.peak == true) || (@lesson.member_ids.include?(member.id)))%>
     <option value="<%=member.id%>"><%=member.name%></option>
   <% end } %>
   </select>
-  <input type="submit" value="Add new member">
 </form>
 
 <form action="/gym/lessons/<%=@lesson.id%>/remove" method="post" <% if (@lesson.members == []) %> hidden <%end%>>
   <input type="hidden" name="lesson_id" value="<%=@lesson.id%>">
+  <input type="submit" value="Remove a member">
   <select name="member_id" required>
     <option value="" disabled selected>Choose member to remove</option>
     <% @members.each() { |member| if (@lesson.member_ids.include?(member.id))%>
       <option value="<%=member.id%>"><%=member.name%></option>
     <% end } %>
   </select>
-  <input type="submit" value="Remove a member">
 </form>
 
 <form action="/gym/lessons/<%=@lesson.id()%>/edit" method="get">
-  <input type="submit" value="Edit this lesson">
+  <input type="submit" value="Edit lesson">
 </form>
 <form action="/gym/lessons/<%=@lesson.id()%>/delete" method="post">
-  <input type="submit" value="Delete this lesson">
+  <input type="submit" value="Delete lesson">
 </form>
 
 <p><a class="return" href="/gym/lessons">Return</a> to directory.</p>

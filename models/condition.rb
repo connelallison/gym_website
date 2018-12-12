@@ -38,7 +38,11 @@ class Condition
   end
 
   def update()
-    SqlRunner.run("UPDATE conditions SET (patient_id, physio_id, type, diagnosed, resolved, resolved_date, notes) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;", [@patient_id, @physio_id, @type, @diagnosed, @resolved, @resolved_date, @notes, @id])
+    if (@physio_id == 0)
+      SqlRunner.run("UPDATE conditions SET (patient_id, type, diagnosed, resolved, resolved_date, notes) = ($1, $2, $3, $4, $5, $6) WHERE id = $7;", [@patient_id, @type, @diagnosed, @resolved, @resolved_date, @notes, @id])
+    else
+      SqlRunner.run("UPDATE conditions SET (patient_id, physio_id, type, diagnosed, resolved, resolved_date, notes) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;", [@patient_id, @physio_id, @type, @diagnosed, @resolved, @resolved_date, @notes, @id])
+    end
   end
 
   def delete()
@@ -62,6 +66,9 @@ class Condition
   end
 
   def physio()
+    if (@physio_id == 0)
+      return Physio.new('physio_name' => 'unassigned')
+    end
     return Physio.new(SqlRunner.run("SELECT * FROM physios WHERE id = $1;", [@physio_id])[0])
   end
 

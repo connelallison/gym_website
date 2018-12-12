@@ -1,7 +1,7 @@
 <h3>Edit patient:</h3>
 <br>
 
-<form action="/wellbeing/patients/<%=@patient.id()%>" method="post">
+<form action="/wellbeing/patients/<%=@patient.id()%>" method="post" autocomplete="off">
   <input type="hidden" name="member" value="<%=@patient.membership%>">
   <% if (@patient.membership == true) %> <input type="hidden" name="membertype" value="<%=@patient.premium%>"> <%end%>
   <label for="patient_name">Full Name:</label>
@@ -17,6 +17,6 @@
 </form>
 
 
-
-<p><a href="/wellbeing/patients/<%=@patient.id()%>">Return</a> to patient.</p>
-<p><a href="/wellbeing/patients">Return</a> to directory.</p>
+<br>
+<p><a class="return" href="/wellbeing/patients/<%=@patient.id()%>">Return</a> to patient.</p>
+<p><a class="return" href="/wellbeing/patients">Return</a> to directory.</p>

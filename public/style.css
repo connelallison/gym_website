@@ -49,8 +49,17 @@
   padding-bottom: 2px;
 }
 
+select, input[type="text"], input[type="number"], input[type="date"] {
+  background-color: lightgrey;
+}
+
+.note {
+  width: 600px;
+}
+
 button, input[type="button"], input[type="submit"] {
   background-color: lightgrey;
+  width: 110px;
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
@@ -62,7 +71,7 @@ button:focus, input[type="button"]:focus, input[type="submit"]:focus {
   outline: 0;
 }
 
-
+input[type="date"] {width: 120px;}
 
 .topnav {
   font-size: 20px;

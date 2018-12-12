@@ -10,13 +10,13 @@
       <%@physio.current_conditions_by_patient(patient).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id%>" method="get">
-          <input type="submit" value="View this condition">
+          <input type="submit" value="View condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
-          <input type="submit" value="Edit this condition">
+          <input type="submit" value="Edit condition">
         </form>
         <form action="/wellbeing/patients/<%=patient.id%>/resolve/<%=condition.id%>" method="post">
-          <input type="submit" value="Mark this as resolved">
+          <input type="submit" value="Mark as resolved">
         </form>
       <% } %>
     </ul>
@@ -25,10 +25,10 @@
 <hr/>
 
 <form action="/wellbeing/physios/<%=@physio.id()%>/edit" method="get">
-  <input type="submit" value="Edit this physio">
+  <input type="submit" value="Edit physio">
 </form>
 <form action="/wellbeing/physios/<%=@physio.id()%>/delete" method="post">
-  <input type="submit" value="Delete this physio">
+  <input type="submit" value="Delete physio">
 </form>
 
 <p><a class="return" href="/wellbeing/physios">Return</a> to directory.</p>
@@ -43,13 +43,13 @@
       <%@physio.resolved_conditions_by_patient(patient).each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
-          <input type="submit" value="View this condition">
+          <input type="submit" value="View condition">
         </form>
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
-          <input type="submit" value="Edit this condition">
+          <input type="submit" value="Edit condition">
         </form>
         <form action="/wellbeing/patients/<%=patient.id%>/remove/<%=condition.id%>" method="post">
-          <input type="submit" value="Delete this condition">
+          <input type="submit" value="Delete condition">
         </form>
       <% } %>
     </ul>

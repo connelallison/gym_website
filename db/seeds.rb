@@ -59,6 +59,6 @@ condition2.save()
 condition3 = patient1.add_condition(physio1, 'Lower Back Pain')
 condition3.save()
 
-# binding.pry
+binding.pry
 
 nil

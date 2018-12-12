@@ -9,14 +9,15 @@
 
 <hr>
 <form action="/wellbeing/conditions/<%=@condition.id%>/add" method="post">
-  <input type="text" name="notes" autocomplete="off">
-  <input type="submit" value="Add new note">
+    <input class="note" type="text" name="notes" autocomplete="off"> <br>
+    <input type="submit" value="Add new note">
 </form>
+<hr>
 <form action="/wellbeing/conditions/<%=@condition.id%>/edit" method="get">
-  <input type="submit" value="Edit this condition">
+  <input type="submit" value="Edit condition">
 </form>
 <form action="/wellbeing/patients/<%=@condition.patient_id%>/resolve/<%=@condition.id%>" method="post">
-  <input type="submit" value="Mark this as resolved">
+  <input type="submit" value="Mark as resolved">
 </form>
 
 <p><a class="return" href="/wellbeing/patients/<%=@condition.patient_id%>">Return</a> to patient.</p>
