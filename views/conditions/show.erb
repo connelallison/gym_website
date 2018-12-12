@@ -1,5 +1,5 @@
-<p>Patient name: <%=@patient_name%></p>
-<p>Physio name: <%=@physio_name%></p>
+<p>Patient name: <%=@condition.patient.patient_name%></p>
+<p>Physio name: <%=@condition.physio.physio_name%></p>
 <p>Type: <%=@condition.type%></p>
 <p>Date diagnosed: <%=@condition.diagnosed%></p>
 <p>Resolved: <% if (@condition.resolved) %> Yes <% else %> No <% end %>

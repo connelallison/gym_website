@@ -4,13 +4,8 @@
 
   <label for="premium">Membership status:</label>
   <select name="premium">
-    <% if (@member.premium == true) %>
-    <option selected value=<%=true%>><%="Premium"%></option>
-    <option value=<%=false%>><%="Standard"%></option>
-    <% else %>
-    <option value=<%=true%>><%="Premium"%></option>
-    <option selected value=<%=false%>><%="Standard"%></option>
-    <% end %>
+    <option  <% if (@member.premium == true) %> selected <%end%> value=<%=true%>><%="Premium"%></option>
+    <option  <% if (@member.premium == false) %> selected <%end%>value=<%=false%>><%="Standard"%></option>
   </select>
   <input type="submit" value="Update member">
 </form>

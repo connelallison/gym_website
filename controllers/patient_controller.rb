@@ -28,21 +28,17 @@ get '/wellbeing/patients/:id/edit' do
   erb(:"patients/edit")
 end
 
+get '/wellbeing/conditions/:id/edit' do
+  @condition = Condition.find(params[:id])
+  @physios = Physio.all()
+  erb(:"conditions/edit")
+end
+
 post '/wellbeing/patients/:id/resolve/:condition_id' do
   @condition = Condition.find(params[:condition_id].to_i())
   @condition.resolve()
   redirect("wellbeing/patients/#{params[:id].to_i()}")
   # redirect("/wellbeing/patients/#{@patient.id}?show_removed=true&physio=#{@physio.course}")
-end
-
-post '/wellbeing/patients/:id/add' do
-  @patient = Patient.find(params[:patient_id].to_i())
-  @physio = Physio.find(params[:physio_id].to_i())
-  @patient_physio = @patient.add_physio(@physio)
-  @patient_physio.save()
-  @physios = Physio.all()
-  @show_added = "show_added"
-  redirect("/wellbeing/patients/#{@patient.id}?show_added=true&physio=#{@physio.course}")
 end
 
 post '/wellbeing/patients/:id' do
@@ -96,7 +92,15 @@ post '/wellbeing/patients/:id' do
   redirect("/wellbeing/patients/#{params[:id].to_i()}")
 end
 
-
+post 'wellbeing/conditions/:id' do
+  @condition = Condition.find(params[:id].to_i())
+  @condition.physio_id = params['physio_id'].to_i()
+  @condition.type = params['type']
+  @condition.diagnosed = params['diagnosed']
+  @condition.notes = params['notes']
+  @condition.update()
+  redirect("wellbeing/patients/#{@condition.patient.id}")
+end
 
 post '/wellbeing/patients' do
   @member_ids = Member.all_ids()
@@ -121,8 +125,6 @@ end
 
 get '/wellbeing/conditions/:id' do
   @condition = Condition.find(params[:id])
-  @patient_name = @condition.patient.patient_name
-  @physio_name = @condition.physio.physio_name
   @return_patient = "return_patient"
   erb(:"conditions/show")
 end

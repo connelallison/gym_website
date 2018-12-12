@@ -1,0 +1,16 @@
+<form action="/wellbeing/conditions/<%=@condition.id()%>" method="post">
+  <p>Patient name: <%=@condition.patient.patient_name%></p>
+  <input type="hidden" name="patient_id" value="<%=@condition.patient.id%>">
+  <label for="physio_id">Physio:</label>
+  <select name="physio_id">
+    <% @physios.each() { |physio| %>
+    <option <% if (@condition.physio.id == physio.id) %> selected <%end%>value="<%=physio.id%>"><%=physio.physio_name%></option>
+  <% } %>
+  </select>
+  <input type="text" name="type" value="<%=@condition.type%>">
+  <label for="diagnosed">Date diagnosed:</label>
+  <input type="date" name="diagnosed" value="<%=@condition.diagnosed%>">
+  <label for="notes">Notes:</label>
+  <input type="text" name="notes" value="<%=@condition.notes%>">
+  <input type="submit" value="Update condition">
+</form>
