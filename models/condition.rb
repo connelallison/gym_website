@@ -38,7 +38,7 @@ class Condition
   end
 
   def update()
-    SqlRunner.run("UPDATE conditions SET (patient_id, physio_id, type, diagnosed, resolved, resolved_date, notes) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;", [@patient_id, @physio_d, @type, @diagnosed, @resolved, @resolved_date, @notes, @id])
+    SqlRunner.run("UPDATE conditions SET (patient_id, physio_id, type, diagnosed, resolved, resolved_date, notes) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;", [@patient_id, @physio_id, @type, @diagnosed, @resolved, @resolved_date, @notes, @id])
   end
 
   def delete()

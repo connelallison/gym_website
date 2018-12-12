@@ -4,6 +4,25 @@ require_relative ("../models/condition.rb")
 require_relative ("../models/member.rb")
 require_relative ("../models/member_lesson.rb")
 
+post '/wellbeing/conditions/:id/add' do
+  @condition = Condition.find(params[:id].to_i())
+  @condition.notes << "<br>"
+  @condition.notes << params['notes']
+  @condition.update()
+  redirect("wellbeing/conditions/#{@condition.id}")
+end
+
+post '/wellbeing/conditions/:id' do
+  @condition = Condition.find(params[:id].to_i())
+  @condition.physio_id = params['physio_id'].to_i()
+  @condition.type = params['type']
+  @condition.diagnosed = params['diagnosed']
+  @condition.update()
+  redirect("wellbeing/patients/#{@condition.patient.id}")
+  # erb(:"conditions/show")
+end
+
+
 get '/wellbeing/patients' do
   @patients = Patient.all_ascending_id()
   @show_patients = "show_patients"
@@ -90,16 +109,6 @@ post '/wellbeing/patients/:id' do
   @patient = Patient.find(params[:id].to_i())
   @conditions = @patient.conditions
   redirect("/wellbeing/patients/#{params[:id].to_i()}")
-end
-
-post 'wellbeing/conditions/:id' do
-  @condition = Condition.find(params[:id].to_i())
-  @condition.physio_id = params['physio_id'].to_i()
-  @condition.type = params['type']
-  @condition.diagnosed = params['diagnosed']
-  @condition.notes = params['notes']
-  @condition.update()
-  redirect("wellbeing/patients/#{@condition.patient.id}")
 end
 
 post '/wellbeing/patients' do

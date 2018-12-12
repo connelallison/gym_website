@@ -7,5 +7,17 @@
 <p>Notes: </p>
 <p><%=@condition.notes%></p>
 
+<hr>
+<form action="/wellbeing/conditions/<%=@condition.id%>/add" method="post">
+  <input type="text" name="notes">
+  <input type="submit" value="Add new note">
+</form>
+<form action="/wellbeing/conditions/<%=@condition.id%>/edit" method="get">
+  <input type="submit" value="Edit this condition">
+</form>
+<form action="/wellbeing/patients/<%=@condition.patient_id%>/resolve/<%=@condition.id%>" method="post">
+  <input type="submit" value="Mark this as resolved">
+</form>
+
 <%if (@return_patient == "return_patient") %><p><a href="/wellbeing/patients/<%=@condition.patient_id%>">Return</a> to patient.</p> <%end%>
 <%if (@return_physio == "return_physio") %><p><a href="/wellbeing/physios/<%=@condition.physio_id%>">Return</a> to physio.</p> <%end%>

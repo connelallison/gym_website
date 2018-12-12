@@ -4,13 +4,11 @@
   <label for="physio_id">Physio:</label>
   <select name="physio_id">
     <% @physios.each() { |physio| %>
-    <option <% if (@condition.physio.id == physio.id) %> selected <%end%>value="<%=physio.id%>"><%=physio.physio_name%></option>
+    <option <% if (@condition.physio_id == physio.id) %> selected <%end%>value="<%=physio.id%>"><%=physio.physio_name%></option>
   <% } %>
   </select>
   <input type="text" name="type" value="<%=@condition.type%>">
   <label for="diagnosed">Date diagnosed:</label>
   <input type="date" name="diagnosed" value="<%=@condition.diagnosed%>">
-  <label for="notes">Notes:</label>
-  <input type="text" name="notes" value="<%=@condition.notes%>">
   <input type="submit" value="Update condition">
 </form>
