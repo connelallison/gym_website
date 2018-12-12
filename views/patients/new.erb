@@ -4,7 +4,7 @@
 
 <form action="/wellbeing/patients" method="post" autocomplete="off">
   <label for="patient_name">Full Name:</label>
-  <input type="text" name="patient_name" list="member_names">
+  <input type="text" name="patient_name" list="member_names" required>
   <datalist id="member_names">
     <% @members.each() { |member| unless (@patient_member_ids.include?(member.id))%>
     <option value="<%=member.name%>">

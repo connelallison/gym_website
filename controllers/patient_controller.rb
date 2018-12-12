@@ -142,9 +142,6 @@ end
 
 get '/wellbeing/patients/:id' do
   @patient = Patient.find(params[:id].to_i())
-  # @show_added = "show_added" if (params[:show_added] == "true")
-  # @show_removed = "show_removed" if (params[:show_removed] == "true")
-  # @physio = params[:physio] if ((params[:show_added] == "true") || (params[:show_removed] == "true"))
   @conditions = @patient.conditions()
   erb(:"patients/show")
 end

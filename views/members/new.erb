@@ -1,9 +1,9 @@
 <form action="/gym/members" method="post">
   <label for="name">Full Name:</label>
-  <input type="text" name="name">
+  <input type="text" name="name" required>
 
   <label for="premium">Membership status:</label>
-  <select name="premium">
+  <select name="premium" required>
     <option value=<%=true%>><%="Premium"%></option>
     <option value=<%=false%>><%="Standard"%></option>
   </select>
