@@ -17,12 +17,27 @@
 <ul>
   <% if (@patient.current_conditions == []) %>
     <p>none</p>
-  <% else @patient.physios_current.each() { |physio| %>
+  <% else %>
+  <p>Unassigned conditions:</p>
+    <ul>
+      <% @patient.current_conditions_unassigned.each() { |condition|%>
+        <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+        <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
+          <input type="submit" value="View this condition">
+        </form>
+        <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
+          <input type="submit" value="Edit this condition">
+        </form>
+        <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
+          <input type="submit" value="Delete this condition">
+        </form>
+      <% } %>
+    </ul>
+  <% @patient.physios_current.each() { |physio| %>
     <p><%=physio.physio_name%>:</p>
     <ul>
       <%@patient.current_conditions_by_physio(physio).each() { |condition|%>
-        <p><%=condition.type%></p>
-        <p>Diagnosed: <%=condition.diagnosed%></p>
+        <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
         <form action="/wellbeing/conditions/<%=condition.id%>" method="get">
           <input type="submit" value="View this condition">
         </form>
@@ -58,6 +73,21 @@
 <% unless (@patient.resolved_conditions == []) %>
 <p>Resolved conditions: </p>
 <ul>
+  <p>Unassigned conditions:</p>
+  <ul>
+    <% @patient.resolved_conditions_unassigned.each() { |condition|%>
+      <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>
+      <form action="/wellbeing/conditions/<%=condition.id()%>" method="get">
+        <input type="submit" value="View this condition">
+      </form>
+      <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
+        <input type="submit" value="Edit this condition">
+      </form>
+      <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
+        <input type="submit" value="Delete this condition">
+      </form>
+    <% } %>
+  </ul>
   <% @patient.physios_resolved.each() { |physio| %>
     <p><%=physio.physio_name%>:</p>
     <ul>

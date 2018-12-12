@@ -116,4 +116,16 @@ class Patient
     return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.physio_id, conditions.resolved) = ($1, $2, $3);", [@id, physio.id, true]).map() { |condition| Condition.new(condition) }
   end
 
+  def conditions_unassigned()
+    return SqlRunner.run("SELECT * FROM conditions WHERE conditions.patient_id = $1 AND conditions.physio_id IS NULL;", [@id]).map() { |condition| Condition.new(condition) }
+  end
+
+  def current_conditions_unassigned()
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2) AND conditions.physio_id IS NULL;", [@id, false]).map() { |condition| Condition.new(condition) }
+  end
+
+  def resolved_conditions_unassigned()
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.patient_id, conditions.resolved) = ($1, $2) AND conditions.physio_id IS NULL;", [@id, true]).map() { |condition| Condition.new(condition) }
+  end
+
 end

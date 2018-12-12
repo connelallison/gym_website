@@ -1,0 +1,10 @@
+<form action="/wellbeing/physios/<%=@physio.id()%>" method="post">
+  <label for="physio_name">Full Name:</label>
+  <input type="text" name="physio_name" value="<%=@physio.physio_name%>" required>
+  <input type="submit" value="Update patient">
+</form>
+
+
+
+<p><a href="/wellbeing/physios/<%=@physio.id()%>">Return</a> to physio.</p>
+<p><a href="/wellbeing/physios">Return</a> to directory.</p>

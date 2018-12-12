@@ -14,3 +14,21 @@ end
 get '/wellbeing/physios/new' do
   erb(:"physios/new")
 end
+
+post '/wellbeing/physios/:id/delete' do
+  @physio = Physio.find(params[:id].to_i())
+  if (@physio == nil); redirect('/wellbeing/physios'); end
+  if (@physio != nil); @physio.delete(); end
+  redirect("/wellbeing/physios")
+end
+
+get '/wellbeing/physios/:id/edit' do
+  @physio = Physio.find(params[:id].to_i())
+  erb(:"physios/edit")
+end
+
+get '/wellbeing/physios/:id' do
+  @physio = Physio.find(params[:id].to_i())
+  @conditions = @physio.conditions()
+  erb(:"physios/show")
+end

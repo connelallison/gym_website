@@ -21,7 +21,7 @@ end
 post '/wellbeing/patients/:id/delete' do
   @patient = Patient.find(params[:id].to_i())
   if (@patient == nil); redirect('/wellbeing/patients'); end
-  if (@patient!= nil); @patient.delete(); end
+  if (@patient != nil); @patient.delete(); end
   redirect("/wellbeing/patients")
 end
 

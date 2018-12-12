@@ -33,6 +33,7 @@ class Physio
   end
 
   def delete()
+    SqlRunner.run("UPDATE conditions SET physio_id = null WHERE physio_id = $1;", [@id])
     SqlRunner.run("DELETE FROM physios where id = $1;", [@id])
   end
 
@@ -94,8 +95,8 @@ class Physio
     return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.physio_id, conditions.patient_id, conditions.resolved) = ($1, $2, $3);", [@id, patient.id, false]).map() { |condition| Condition.new(condition) }
   end
 
-  def resolved_conditions_by_physio(physio)
-    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.physio_id, conditions.patient_id, conditions.resolved) = ($1, $2, $3);", [@id, patient.id, false]).map() { |condition| Condition.new(condition) }
+  def resolved_conditions_by_patient(patient)
+    return SqlRunner.run("SELECT * FROM conditions WHERE (conditions.physio_id, conditions.patient_id, conditions.resolved) = ($1, $2, $3);", [@id, patient.id, true]).map() { |condition| Condition.new(condition) }
   end
 
 end
