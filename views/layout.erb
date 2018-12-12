@@ -9,32 +9,33 @@
 </head>
 <body>
   <nav class="topnav">
-  <a class="home" href="/">Home</a>
+  <a class="navlink" href="/">Home </a>
   <% unless (@show_lessons == "show_lessons") %>
-    <a href="/gym/lessons">View lessons</a>
+    <a class="navlink" href="/gym/lessons">View lessons </a>
   <% end %>
   <% if (@show_lessons == "show_lessons") %>
-    <a class="create-new" href="/gym/lessons/new">Add lesson </a>
+    <a class="navlink" href="/gym/lessons/new">Add lesson </a>
   <% end %>
   <% unless (@show_members == "show_members") %>
-    <a href="/gym/members">View members</a>
+    <a class="navlink" href="/gym/members">View members </a>
   <% end %>
   <% if (@show_members == "show_members") %>
-    <a class="create-new" href="/gym/members/new">Add member </a>
+    <a class="navlink" href="/gym/members/new">Add member </a>
   <% end %>
   <% unless (@show_physios == "show_physios") %>
-    <a href="/wellbeing/physios">View physios</a>
+    <a class="navlink" href="/wellbeing/physios">View physios </a>
   <% end %>
   <% if (@show_physios == "show_physios") %>
-    <a class="create-new" href="/wellbeing/physios/new">Add physio </a>
+    <a class="navlink" href="/wellbeing/physios/new">Add physio </a>
   <% end %>
   <% unless (@show_patients == "show_patients") %>
-    <a href="/wellbeing/patients">View patients</a>
+    <a class="navlink-last" href="/wellbeing/patients">View patients </a>
   <% end %>
   <% if (@show_patients == "show_patients") %>
-    <a class="create-new" href="/wellbeing/patients/new">Add patient </a>
+    <a class="navlink-last" href="/wellbeing/patients/new">Add patient </a>
   <% end %>
   </nav>
+  <!-- <hr> -->
   <%= yield %>
 </body>
 </html>

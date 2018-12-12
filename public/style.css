@@ -36,14 +36,33 @@
   font-size: 2em;
 }
 
+.navlink {
+  border-bottom: black solid 1px;
+  border-right: black solid 1px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+}
+
+.navlink-last {
+  border-bottom: black solid 1px;
+  padding-left: 2px;
+  padding-bottom: 2px;
+}
+
 button, input[type="button"], input[type="submit"] {
   background-color: lightgrey;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  background-color: darkgrey;
 }
 
 button:focus, input[type="button"]:focus, input[type="submit"]:focus {
   background-color: grey;
   outline: 0;
 }
+
+
 
 .topnav {
   font-size: 20px;
@@ -52,8 +71,10 @@ button:focus, input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 a {text-decoration: none; color: black;}
+a:hover {color: grey;}
 a:focus {color: darkgrey;}
 a:visited {text-decoration: none;}
 
 a.return {color: red;}
+a.return:hover {color: firebrick;}
 a.return:focus {color: darkred;}
