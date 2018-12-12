@@ -1,3 +1,6 @@
+<h3>Edit condition:</h3>
+<br>
+
 <form action="/wellbeing/conditions/<%=@condition.id()%>" method="post">
   <p>Patient name: <%=@condition.patient.patient_name%></p>
   <input type="hidden" name="patient_id" value="<%=@condition.patient.id%>">

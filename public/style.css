@@ -52,3 +52,6 @@ button:focus, input[type="button"]:focus, input[type="submit"]:focus {
 a {text-decoration: none; color: black;}
 a:focus {color: darkgrey;}
 a:visited {text-decoration: none;}
+
+a.return {color: red;}
+a.return:focus {color: darkred;}

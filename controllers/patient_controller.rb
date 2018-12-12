@@ -67,6 +67,7 @@ post '/wellbeing/patients/:id' do
         @member.name = params['patient_name']
         @member.premium = false
         @member.update()
+        MemberLesson.delete_ineligible()
       end
       @patient.patient_name = params['patient_name']
       @patient.update()
@@ -77,6 +78,7 @@ post '/wellbeing/patients/:id' do
         @member.name = params['patient_name']
         @member.premium = true
         @member.update()
+        MemberLesson.delete_ineligible()
       end
       @patient.patient_name = params['patient_name']
       @patient.update()
