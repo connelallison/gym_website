@@ -63,7 +63,12 @@ post '/wellbeing/patients/:id/resolve/:condition_id' do
   @condition = Condition.find(params[:condition_id].to_i())
   @condition.resolve()
   redirect("wellbeing/patients/#{params[:id].to_i()}")
-  # redirect("/wellbeing/patients/#{@patient.id}?show_removed=true&physio=#{@physio.course}")
+end
+
+post '/wellbeing/patients/:id/remove/:condition_id' do
+  @condition = Condition.find(params[:condition_id].to_i())
+  @condition.delete()
+  redirect("wellbeing/patients/#{params[:id].to_i()}")
 end
 
 post '/wellbeing/patients/:id' do
