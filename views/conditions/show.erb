@@ -9,7 +9,7 @@
 
 <hr>
 <form action="/wellbeing/conditions/<%=@condition.id%>/add" method="post">
-  <input type="text" name="notes">
+  <input type="text" name="notes" autocomplete="off">
   <input type="submit" value="Add new note">
 </form>
 <form action="/wellbeing/conditions/<%=@condition.id%>/edit" method="get">

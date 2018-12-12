@@ -1,0 +1,26 @@
+<h2 class="physio-title">Physio Directory</h2>
+
+<% @physios.each() { |physio| %>
+  <p>Name: <%= physio.physio_name() %></p>
+  <p>Patients: </p>
+  <ul>
+    <% if (physio.patients == []) %> <p>none</p> <% end %>
+    <% physio.patients.each() { |patient| %>
+      <p><%=patient.patient_name%></p>
+    <% } %>
+  </ul>
+
+  <div class="buttons">
+    <form action="/wellbeing/physios/<%=physio.id()%>" method="get">
+      <input class="button" type="submit" value="View this physio">
+    </form>
+    <form action="/wellbeing/physios/<%=physio.id()%>/edit" method="get">
+      <input class="button edit" type="submit" value="Edit this physio">
+    </form>
+    <form action="/wellbeing/physios/<%=physio.id()%>/delete" method="post">
+      <input class="button delete" type="submit" value="Delete this physio">
+    </form>
+  </div>
+
+  <hr/>
+<%}%>
