@@ -57,6 +57,10 @@ select, input[type="text"], input[type="number"], input[type="date"] {
   width: 600px;
 }
 
+input[type="submit"].homebutton {
+  width: 140px;
+}
+
 button, input[type="button"], input[type="submit"] {
   background-color: lightgrey;
   width: 110px;
@@ -78,6 +82,7 @@ input[type="date"] {width: 120px;}
   /* border-bottom-color: black;
   border-bottom-style: solid; */
 }
+
 
 a {text-decoration: none; color: black;}
 a:hover {color: grey;}
