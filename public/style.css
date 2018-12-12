@@ -1,0 +1,31 @@
+* {
+  background-color: beige;
+}
+
+.home-main-title {
+  display: inline-flex;
+  align-self: center;
+}
+
+.home-left {
+  display: inline-block;
+  width: 40%;
+  /* flex-direction: column; */
+  align-self: center;
+}
+
+.home-right {
+  display: inline-block;
+  width: 40%;
+  /* flex-direction: column; */
+  align-self: center;
+}
+
+button, input[type="button"], input[type="submit"] {
+  background-color: lightgrey;
+}
+
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+  background-color: grey;
+  outline: 0;
+}
