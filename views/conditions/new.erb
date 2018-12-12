@@ -1,0 +1,19 @@
+<form action="/wellbeing/conditions" method="post" autocomplete="off">
+  <label for="patient_id">Patient:</label>
+  <select name="patient_id" required>
+    <% @patients.each() { |patient| %>
+    <option value="<%=patient.id%>"><%=patient.patient_name%></option>
+  <% } %>
+  </select>
+  <label for="physio_id">Physio:</label>
+  <select name="physio_id" required>
+    <% @physios.each() { |physio| %>
+    <option value="<%=physio.id%>"><%=physio.physio_name%></option>
+  <% } %>
+  </select>
+  <label for="type">Type: </label>
+  <input type="text" name="type" required>
+  <label for="notes">Notes:</label>
+  <input type="text" name="notes">
+  <input type="submit" value="Add condition">
+</form>

@@ -35,6 +35,12 @@ get '/wellbeing/patients/new' do
   erb(:"patients/new")
 end
 
+get '/wellbeing/conditions/new' do
+  @patients = Patient.all()
+  @physios = Physio.all()
+  erb(:"conditions/new")
+end
+
 post '/wellbeing/patients/:id/delete' do
   @patient = Patient.find(params[:id].to_i())
   if (@patient == nil); redirect('/wellbeing/patients'); end
@@ -121,6 +127,12 @@ post '/wellbeing/patients' do
     @patient.save()
   end
   redirect("wellbeing/patients")
+end
+
+post '/wellbeing/conditions' do
+  @condition = Condition.new(params)
+  @condition.save()
+  redirect("/wellbeing/patients/#{params['patient_id'].to_i()}")
 end
 
 get '/wellbeing/patients/:id' do
