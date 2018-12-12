@@ -18,7 +18,7 @@
   <% if (@patient.current_conditions == []) %>
     <p>none</p>
   <% else %>
-  <p>Unassigned conditions:</p>
+  <% unless (@patient.current_conditions_unassigned == []) %> <p>Unassigned conditions:</p> <% end %>
     <ul>
       <% @patient.current_conditions_unassigned.each() { |condition|%>
         <p><%=condition.type%> - diagnosed <%=condition.diagnosed%></p>

@@ -27,6 +27,12 @@ get '/wellbeing/physios/:id/edit' do
   erb(:"physios/edit")
 end
 
+post '/wellbeing/physios' do
+  @physio = Physio.new(params)
+  @physio.save()
+  redirect("wellbeing/physios")
+end
+
 get '/wellbeing/physios/:id' do
   @physio = Physio.find(params[:id].to_i())
   @conditions = @physio.conditions()
