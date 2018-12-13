@@ -6,7 +6,7 @@ require_relative("./member.rb")
 class Patient
 
   attr_reader :id
-  attr_accessor :patient_name, :member_id, :membership, :premium, :member
+  attr_accessor :patient_name, :member_id, :membership, :premium
 
   def initialize(options)
     @id = options['id'].to_i() if options['id']
@@ -14,7 +14,6 @@ class Patient
     @member_id = options['member_id'].to_i() if options['member_id']
     @membership = true if @member_id.is_a? Integer
     @membership = false unless @member_id.is_a? Integer
-    @member = Member.find(@member_id) if @member_id.is_a? Integer
     @premium = Member.find(@member_id).premium if options['member_id']
   end
 
@@ -62,6 +61,10 @@ class Patient
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM patients WHERE id = $1;", [id]).first())
     return Patient.new(result) if (result != nil)
+  end
+
+  def member()
+    return Member.find(@member_id) if @member_id.is_a? Integer
   end
 
   def physios()
