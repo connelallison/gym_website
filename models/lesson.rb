@@ -38,10 +38,10 @@ attr_accessor :course, :capacity, :peak
         member_lesson = MemberLesson.new('member_id' => member.id, 'lesson_id' => self.id)
         return member_lesson
       else
-        return "This member cannot attend Peak hours lessons without Premium membership."
+        # return "This member cannot attend Peak hours lessons without Premium membership."
       end
     else
-      return "This lesson is already full to capacity."
+      # return "This lesson is already full to capacity."
     end
   end
 
@@ -56,10 +56,6 @@ attr_accessor :course, :capacity, :peak
   def self.find(id)
     result = (SqlRunner.run("SELECT * FROM lessons WHERE id = $1;", [id]).first())
     return Lesson.new(result) if (result != nil)
-  end
-
-  def members()
-    return SqlRunner.run("SELECT * FROM members WHERE lesson = $1;", [@course]).map() { |member| Member.new(member) }
   end
 
   def members()

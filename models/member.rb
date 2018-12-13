@@ -50,10 +50,10 @@ class Member
         member_lesson = MemberLesson.new('member_id' => self.id, 'lesson_id' => lesson.id)
         return member_lesson
       else
-        return "This member cannot attend Peak hours lessons without Premium membership."
+        # return "This member cannot attend Peak hours lessons without Premium membership."
       end
     else
-      return "This lesson is already full to capacity."
+      # return "This lesson is already full to capacity."
     end
   end
 

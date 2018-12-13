@@ -28,8 +28,8 @@
         <form action="/wellbeing/conditions/<%=condition.id%>/edit" method="get">
           <input type="submit" value="Edit condition">
         </form>
-        <form action="/wellbeing/patients/<%=@patient.id%>/remove/<%=condition.id%>" method="post">
-          <input type="submit" value="Delete condition">
+        <form action="/wellbeing/patients/<%=@patient.id%>/resolve/<%=condition.id%>" method="post">
+          <input type="submit" value="Mark as resolved">
         </form>
       <% } %>
     </ul>
