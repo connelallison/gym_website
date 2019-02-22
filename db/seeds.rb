@@ -5,8 +5,6 @@ require_relative('../models/physio.rb')
 require_relative('../models/patient.rb')
 require_relative('../models/condition.rb')
 
-require('pry')
-
 Condition.delete_all()
 Physio.delete_all()
 Patient.delete_all()
@@ -59,6 +57,5 @@ condition2.save()
 condition3 = patient1.add_condition(physio1, 'Lower Back Pain')
 condition3.save()
 
-# binding.pry
 
 nil
